@@ -1,0 +1,29 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "root=\"$PWD\"; while [ ! -f \"$root/.codex/hooks/guard_secrets.py\" ] && [ \"$root\" != \"/\" ]; do root=\"$(dirname \"$root\")\"; done; /usr/bin/python3 \"$root/.codex/hooks/guard_secrets.py\"",
+            "timeout": 10,
+            "statusMessage": "检查输入中是否包含凭据"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "(^|.*\\.)apply_patch$|(^|.*\\.)exec_command$|^Bash$|^Edit$|^Write$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "root=\"$PWD\"; while [ ! -f \"$root/.codex/hooks/guard_secrets.py\" ] && [ \"$root\" != \"/\" ]; do root=\"$(dirname \"$root\")\"; done; /usr/bin/python3 \"$root/.codex/hooks/guard_secrets.py\"",
+            "timeout": 10,
+            "statusMessage": "检查写入内容中是否包含凭据"
+          }
+        ]
+      }
+    ]
+  }
+}

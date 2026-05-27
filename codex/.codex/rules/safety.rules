@@ -1,0 +1,100 @@
+# 禁止不可逆的清理和历史重写。
+prefix_rule(
+    pattern = ["git", "reset", "--hard"],
+    decision = "forbidden",
+    justification = "保留未提交工作；请使用经过审查的恢复步骤。",
+    match = ["git reset --hard", "git reset --hard HEAD"],
+    not_match = ["git reset --soft HEAD~1", "git reset --mixed HEAD"],
+)
+
+prefix_rule(
+    pattern = ["git", "clean", ["-fd", "-df", "-fdx", "-xdf", "-fx", "-xf"]],
+    decision = "forbidden",
+    justification = "保留未跟踪文件；请检查后按路径有意删除。",
+    match = ["git clean -fd", "git clean -fdx"],
+    not_match = ["git clean -n", "git clean -nd"],
+)
+
+prefix_rule(
+    pattern = ["rm", ["-rf", "-fr"]],
+    decision = "forbidden",
+    justification = "请先检查受影响路径，再执行精确删除。",
+    match = ["rm -rf build", "rm -fr cache"],
+    not_match = ["rm output.txt", "rm -r empty-directory"],
+)
+
+# 禁止可能重写远程历史的推送。
+prefix_rule(
+    pattern = ["git", "push", ["--force", "-f", "--force-with-lease"]],
+    decision = "forbidden",
+    justification = "禁止重写远程分支历史；请采用正常推送或单独审查恢复方案。",
+    match = ["git push --force origin main", "git push --force-with-lease origin feature"],
+    not_match = ["git push origin feature", "git fetch --all"],
+)
+
+# 对外发布制品或正式版本前必须确认。
+prefix_rule(
+    pattern = [["npm", "pnpm", "yarn"], "publish"],
+    decision = "prompt",
+    justification = "发布软件包属于外部写入，请确认目标注册表与发布范围。",
+    match = ["npm publish", "pnpm publish --tag next"],
+    not_match = ["npm pack", "pnpm test"],
+)
+
+prefix_rule(
+    pattern = ["gh", "release", "create"],
+    decision = "prompt",
+    justification = "创建远程发行版本前需要明确批准。",
+    match = ["gh release create v1.0.0", "gh release create v1.0.0 --draft"],
+    not_match = ["gh release view v1.0.0", "gh pr view 10"],
+)
+
+prefix_rule(
+    pattern = ["docker", "push"],
+    decision = "prompt",
+    justification = "推送镜像会写入外部仓库，请确认非生产目标和权限。",
+    match = ["docker push registry.example/app:test"],
+    not_match = ["docker build .", "docker images"],
+)
+
+# 基础设施、集群与部署动作必须在已授权环境中执行。
+prefix_rule(
+    pattern = [["terraform", "tofu"], ["apply", "destroy"]],
+    decision = "prompt",
+    justification = "基础设施变更必须确认环境、计划内容和回退方式。",
+    match = ["terraform apply", "tofu destroy -auto-approve"],
+    not_match = ["terraform plan", "tofu validate"],
+)
+
+prefix_rule(
+    pattern = ["kubectl", ["apply", "delete", "patch", "replace", "rollout"]],
+    decision = "prompt",
+    justification = "集群写入操作必须确认目标上下文为已授权环境。",
+    match = ["kubectl apply -f deployment.yaml", "kubectl delete pod api"],
+    not_match = ["kubectl get pods", "kubectl describe pod api"],
+)
+
+prefix_rule(
+    pattern = ["helm", ["install", "upgrade", "uninstall"]],
+    decision = "prompt",
+    justification = "Helm 发布变更必须确认目标环境和回滚准备。",
+    match = ["helm upgrade api ./chart", "helm uninstall api"],
+    not_match = ["helm lint ./chart", "helm list"],
+)
+
+# 连接器和认证状态的变更必须由用户批准。
+prefix_rule(
+    pattern = ["codex", "mcp", ["add", "remove", "login", "logout"]],
+    decision = "prompt",
+    justification = "MCP 配置或授权变更可能扩大外部访问范围，请明确确认。",
+    match = ["codex mcp login github", "codex mcp add service --url https://example.invalid/mcp"],
+    not_match = ["codex mcp list", "codex mcp get openaiDeveloperDocs"],
+)
+
+prefix_rule(
+    pattern = ["gh", "auth", ["login", "logout", "refresh"]],
+    decision = "prompt",
+    justification = "代码托管身份授权变更需要用户明确批准。",
+    match = ["gh auth login", "gh auth refresh"],
+    not_match = ["gh auth status", "gh repo view"],
+)

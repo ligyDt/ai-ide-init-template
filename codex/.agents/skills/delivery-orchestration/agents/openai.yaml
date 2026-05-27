@@ -1,0 +1,4 @@
+interface:
+  display_name: "交付协同编排"
+  short_description: "编排跨角色开发测试发布安全协作以及明确交接产物和顺序"
+  default_prompt: "使用 $delivery-orchestration 编排本次需求的交付分工。"

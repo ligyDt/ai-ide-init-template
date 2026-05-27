@@ -1,0 +1,31 @@
+# 仅在项目被信任后加载的项目级 Codex 默认配置。
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+web_search = "cached"
+
+[sandbox_workspace_write]
+network_access = false
+
+[features]
+hooks = true
+multi_agent = true
+apps = true
+
+# 直接子代理可并行协作，但禁止递归扩散任务。
+[agents]
+max_threads = 7
+max_depth = 1
+
+# 外部应用默认关闭开放网络与破坏性动作，按具体任务显式放开。
+[apps._default]
+enabled = true
+destructive_enabled = false
+open_world_enabled = false
+
+# 用于 Codex 配置与 OpenAI 开发文档查询的官方文档 MCP。
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"
+enabled = true
+required = false
+startup_timeout_sec = 20
+tool_timeout_sec = 60

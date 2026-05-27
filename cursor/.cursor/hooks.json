@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeSubmitPrompt": [
+      {
+        "command": "/usr/bin/python3 .cursor/hooks/guard_secrets.py prompt",
+        "timeout": 10,
+        "failClosed": true
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": "/usr/bin/python3 .cursor/hooks/guard_secrets.py write",
+        "matcher": "Write|Edit",
+        "timeout": 10,
+        "failClosed": true
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": "/usr/bin/python3 .cursor/hooks/guard_secrets.py shell",
+        "timeout": 10,
+        "failClosed": true
+      }
+    ],
+    "beforeMCPExecution": [
+      {
+        "command": "/usr/bin/python3 .cursor/hooks/guard_secrets.py mcp",
+        "timeout": 10,
+        "failClosed": true
+      }
+    ]
+  }
+}

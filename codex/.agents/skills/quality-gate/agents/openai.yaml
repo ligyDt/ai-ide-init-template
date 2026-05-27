@@ -1,0 +1,4 @@
+interface:
+  display_name: "质量门禁检查"
+  short_description: "建立覆盖验收回归异常安全与发布结论的完整质量门禁流程"
+  default_prompt: "使用 $quality-gate 检查本次交付是否可发布。"

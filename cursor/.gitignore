@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+.cursor/settings.local.json
+__pycache__/
+*.pyc

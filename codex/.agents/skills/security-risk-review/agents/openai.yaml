@@ -1,0 +1,4 @@
+interface:
+  display_name: "安全风险审查"
+  short_description: "审查凭据隐私外部访问支付生产发布以及真实数据处理风险"
+  default_prompt: "使用 $security-risk-review 审查这项方案的安全风险。"

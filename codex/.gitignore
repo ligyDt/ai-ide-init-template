@@ -1,0 +1,18 @@
+# 本地凭据与环境文件
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# 本地操作系统与诊断文件
+.DS_Store
+*.log
+
+# Python 本地校验缓存
+__pycache__/
+*.py[cod]
+
+# Codex 本地运行输出；项目配置仍应被跟踪
+.codex/tmp/
+.codex/logs/

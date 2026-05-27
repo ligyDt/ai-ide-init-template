@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+.codebuddy/settings.local.json
+__pycache__/
+*.pyc

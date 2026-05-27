@@ -1,0 +1,4 @@
+interface:
+  display_name: "架构决策记录"
+  short_description: "记录技术选型接口边界数据流依赖风险以及后续验证依据"
+  default_prompt: "使用 $architecture-decision 固化这项技术决定。"

@@ -1,0 +1,12 @@
+interface:
+  display_name: "集成接入管理"
+  short_description: "安全选择配置验证外部工具连接器插件以及MCP接入流程"
+  default_prompt: "使用 $integration-onboarding 规划并验证所需集成。"
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "openaiDeveloperDocs"
+      description: "用于核实 Codex 与 OpenAI 集成方式的官方文档服务"
+      transport: "streamable_http"
+      url: "https://developers.openai.com/mcp"

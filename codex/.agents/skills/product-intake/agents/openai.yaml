@@ -1,0 +1,4 @@
+interface:
+  display_name: "产品需求收敛"
+  short_description: "将模糊想法整理为可实施可验收并具有明确边界的产品需求"
+  default_prompt: "使用 $product-intake 将我的想法整理成可执行需求。"

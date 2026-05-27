@@ -1,0 +1,4 @@
+interface:
+  display_name: "发布准备审查"
+  short_description: "规划非生产验证部署回滚监控告警以及发布批准条件和记录"
+  default_prompt: "使用 $release-readiness 准备本次变更的发布方案。"

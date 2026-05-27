@@ -1,0 +1,11 @@
+---
+description: MCP、插件、设计、支付与发布接入规则
+alwaysApply: true
+---
+
+# 集成与发布
+
+- 默认启用的项目 MCP 仅用于访问公开的 OpenAI 开发文档，不需要凭据。
+- GitHub、Browser/Chrome、Figma、Canva、Linear、文档产物与表格能力按任务需要接入，优先只读验证。
+- Stripe 仅可在测试模式下使用；部署、监控和云供应商待项目明确选择后再配置。
+- 不自行安装连接器、改变授权状态、创建远端资源或发布产物。

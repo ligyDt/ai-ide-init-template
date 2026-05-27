@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "openaiDeveloperDocs": {
+      "type": "http",
+      "url": "https://developers.openai.com/mcp",
+      "description": "公开的 OpenAI 开发文档查询能力，不存储项目凭据"
+    }
+  }
+}
