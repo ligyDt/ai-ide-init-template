@@ -119,34 +119,34 @@ AI IDE 正在从“代码补全工具”变成能读仓库、写文件、调用�
 
 ```text
 ai-ide-init-template/
-├── README.md
-├── LICENSE
-├── CONTRIBUTING.md
-├── SECURITY.md
+├── README.md                         # 项目首页：背景、痛点、能力矩阵、复制方式和验证说明
+├── LICENSE                           # MIT 开源协议
+├── CONTRIBUTING.md                   # 贡献规则：新增模板、官方依据、验证和安全要求
+├── SECURITY.md                       # 安全策略：漏洞报告、凭据处理和高风险边界
 ├── scripts/
-│   └── verify_all_templates.py
-├── codex/
-│   ├── AGENTS.md
-│   ├── .codex/
-│   ├── .agents/skills/
-│   ├── docs/
-│   └── scripts/
-├── cursor/
-│   ├── AGENTS.md
-│   ├── .cursor/
-│   ├── docs/
-│   └── scripts/
-├── codebuddy/
-│   ├── CODEBUDDY.md
-│   ├── .codebuddy/
-│   ├── .mcp.json
-│   ├── docs/
-│   └── scripts/
-└── trae/
-    ├── AGENTS.md
-    ├── .agents/skills/
-    ├── docs/
-    └── scripts/
+│   └── verify_all_templates.py        # 仓库级聚合验证：依次检查四套模板
+├── codex/                            # OpenAI Codex 项目模板，可单独复制到目标项目
+│   ├── AGENTS.md                     # Codex 中文总规则：协作、数据、安全和外部访问边界
+│   ├── .codex/                       # Codex 原生配置：config、agents、hooks、rules
+│   ├── .agents/skills/               # 8 个 Codex Agent Skills 及中文界面元数据
+│   ├── docs/                         # Codex 初始化、验证、MCP、Hooks、Rules 使用指南
+│   └── scripts/                      # Codex 模板离线验证脚本
+├── cursor/                           # Cursor 项目模板，可单独复制到目标项目
+│   ├── AGENTS.md                     # Cursor 中文总规则
+│   ├── .cursor/                      # Cursor 原生配置：rules、agents、skills、mcp、hooks
+│   ├── docs/                         # Cursor 初始化、CLI 验证和 IDE 加载指南
+│   └── scripts/                      # Cursor 模板离线验证脚本
+├── codebuddy/                        # CodeBuddy 项目模板，可单独复制到目标项目
+│   ├── CODEBUDDY.md                  # CodeBuddy 项目核心说明
+│   ├── .codebuddy/                   # CodeBuddy 原生配置：settings、agents、skills、hooks
+│   ├── .mcp.json                     # CodeBuddy 项目级公开文档 MCP 配置
+│   ├── docs/                         # CodeBuddy 初始化、Settings、Subagents、Skills 和 MCP 指南
+│   └── scripts/                      # CodeBuddy 模板离线验证脚本
+└── trae/                             # TRAE 保守项目模板，可单独复制到目标项目
+    ├── AGENTS.md                     # TRAE 中文总规则：七类职责与安全审批边界
+    ├── .agents/skills/               # 8 个 TRAE Agent Skills
+    ├── docs/                         # TRAE 初始化和 IDE 内人工接入指南
+    └── scripts/                      # TRAE 模板离线验证脚本
 ```
 
 每个工具目录均为自包含模板。将某一个目录的**内容**复制到目标项目根目录后即可使用，不依赖本仓库其他模板目录。
