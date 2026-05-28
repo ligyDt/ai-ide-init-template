@@ -1,0 +1,4 @@
+interface:
+  display_name: "TDD 与测试生成"
+  short_description: "生成测试矩阵、边界用例和回归验证方案。"
+  default_prompt: "使用 $test-generation 为当前需求生成测试方案和关键用例。"

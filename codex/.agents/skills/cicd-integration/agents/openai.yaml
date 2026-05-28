@@ -1,0 +1,4 @@
+interface:
+  display_name: "CI/CD 深度集成"
+  short_description: "设计或审查流水线、质量门禁和发布审批边界。"
+  default_prompt: "使用 $cicd-integration 规划这个项目的 CI/CD 接入。"

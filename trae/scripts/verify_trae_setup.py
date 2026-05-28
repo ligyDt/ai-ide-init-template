@@ -13,6 +13,12 @@ SKILLS = (
     "architecture-decision", "quality-gate", "release-readiness",
     "security-risk-review", "integration-onboarding",
 )
+SUPPLEMENTAL_SKILLS = (
+    "prompt-template-library", "test-generation", "performance-analysis",
+    "internationalization-support", "documentation-generation",
+    "dependency-vulnerability-scan", "cicd-integration", "monorepo-awareness",
+)
+ALL_SKILLS = SKILLS + SUPPLEMENTAL_SKILLS
 
 
 def fail(message: str) -> None:
@@ -27,12 +33,18 @@ def read(path: Path) -> str:
 
 def main() -> int:
     visible = [ROOT / "AGENTS.md", ROOT / "docs/TRAE-初始化指南.md"]
-    for name in SKILLS:
+    for name in ALL_SKILLS:
         skill = ROOT / ".agents/skills" / name / "SKILL.md"
         content = read(skill)
         if not content.startswith("---\n") or f"name: {name}" not in content:
             fail(f"Skill 元数据不完整：{name}")
         visible.append(skill)
+    for name in ("project-context.md", "memory.md", "rules.md", "errors.md"):
+        visible.append(ROOT / ".agents" / name)
+    context = read(ROOT / ".agents/project-context.md")
+    for marker in ("技术栈", "核心架构", "领域词表", "关键约束", "已知技术债"):
+        if marker not in context:
+            fail(f"项目上下文模板缺少栏目：{marker}")
     forbidden_paths = (
         ROOT / ".trae",
         ROOT / ".mcp.json",
@@ -51,7 +63,7 @@ def main() -> int:
         if marker not in guide:
             fail(f"指南未说明保守接入边界：{marker}")
     print("TRAE 模板离线验证通过。")
-    print("- 已验证：AGENTS.md 与八个可复制流程 Skills 的结构及中文安全边界。")
+    print("- 已验证：AGENTS.md、八个流程 Skills 与八个补充能力 Skills 的结构及中文安全边界。")
     print("- 需人工确认：TRAE IDE 中的 MCP、自定义智能体、沙箱与运行时加载状态。")
     return 0
 

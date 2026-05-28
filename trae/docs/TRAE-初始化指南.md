@@ -12,15 +12,32 @@
 trae/
 ├── AGENTS.md
 ├── .agents/
+│   ├── project-context.md       # 项目上下文、技术栈、领域词表和约束
+│   ├── memory.md                # 长期偏好、决策和复盘摘要
+│   ├── errors.md                # 错误免疫库
+│   ├── rules.md                 # 项目专属工程规则
 │   └── skills/
 │       ├── product-intake/SKILL.md
 │       ├── delivery-orchestration/SKILL.md
-│       └── ... 共八个流程技能
+│       └── ... 共八个流程技能与八个补充能力技能
 ├── scripts/verify_trae_setup.py
 └── docs/TRAE-初始化指南.md
 ```
 
 将本目录内容复制到目标项目根目录后，在 TRAE 中打开项目，确认指令和 Skills 能被识别。若工具版本要求通过设置面板导入技能，应选择本项目中的 `.agents/skills/` 内容，并保留相同安全边界。
+
+### 能力配置全景
+
+| 层级 | TRAE 保守承载位置 |
+| --- | --- |
+| 认知与上下文层 | `.agents/project-context.md`、README |
+| 角色与人格层 | `AGENTS.md` 七类职责协议 |
+| 工程规范与约束层 | `.agents/rules.md` |
+| 自动化执行层 | `.agents/skills/*` |
+| 安全与合规层 | `security-risk-review` 与安全约束 |
+| 学习与自进化层 | `.agents/memory.md`、`.agents/errors.md` |
+| 协同与沟通层 | `delivery-orchestration` |
+| 平台与可观测层 | `release-readiness`、`cicd-integration`、`performance-analysis` |
 
 ## 3. 角色协作
 
@@ -39,6 +56,8 @@ trae/
 ## 4. Skills 使用
 
 `product-intake` 收敛需求，`delivery-orchestration` 组织交付；界面需求使用 `experience-specification`，关键取舍使用 `architecture-decision`；交付前组合 `quality-gate`、`security-risk-review` 与 `release-readiness`；新增外部能力使用 `integration-onboarding`。
+
+补充能力 skills：`prompt-template-library`、`test-generation`、`performance-analysis`、`internationalization-support`、`documentation-generation`、`dependency-vulnerability-scan`、`cicd-integration`、`monorepo-awareness`。
 
 ## 5. IDE 内接入与安全检查
 

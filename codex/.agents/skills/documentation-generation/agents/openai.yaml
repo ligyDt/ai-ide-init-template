@@ -1,0 +1,4 @@
+interface:
+  display_name: "文档自动生成"
+  short_description: "基于项目事实生成 README、API、架构和运维文档。"
+  default_prompt: "使用 $documentation-generation 更新这个项目的说明文档。"

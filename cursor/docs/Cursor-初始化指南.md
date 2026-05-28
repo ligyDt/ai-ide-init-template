@@ -14,7 +14,11 @@ cursor/
 ├── .cursor/
 │   ├── rules/                 # 项目级 MDC 规则
 │   ├── agents/                # 七个项目级子代理
-│   ├── skills/                # 八个项目级 skills
+│   ├── skills/                # 八个流程 skills 与八个补充能力 skills
+│   ├── project-context.md     # 项目上下文、技术栈、领域词表和约束
+│   ├── memory.md              # 长期偏好、决策和复盘摘要
+│   ├── errors.md              # 错误免疫库
+│   ├── rules.md               # 项目专属工程规则
 │   ├── mcp.json               # 公开文档 MCP
 │   ├── hooks.json             # 安全 hook 注册
 │   └── hooks/guard_secrets.py
@@ -23,6 +27,19 @@ cursor/
 ```
 
 `.cursorrules` 已不作为本模板入口；通用约束使用 `.cursor/rules/*.mdc` 与 `AGENTS.md`。
+
+### 2.1 能力配置全景
+
+| 层级 | Cursor 承载位置 |
+| --- | --- |
+| 认知与上下文层 | `.cursor/project-context.md`、README |
+| 角色与人格层 | `.cursor/agents/*.md` |
+| 工程规范与约束层 | `.cursor/rules/*.mdc`、`.cursor/rules.md` |
+| 自动化执行层 | `.cursor/skills/*`、`.cursor/hooks.json` |
+| 安全与合规层 | `.cursor/hooks/guard_secrets.py`、安全规则 |
+| 学习与自进化层 | `.cursor/memory.md`、`.cursor/errors.md` |
+| 协同与沟通层 | `delivery-orchestration` 与 Agents 交接协议 |
+| 平台与可观测层 | `release-readiness`、`cicd-integration`、`performance-analysis` |
 
 ## 3. 使用方式
 
@@ -72,6 +89,8 @@ python3 scripts/verify_cursor_setup.py
 | `integration-onboarding` | 管理 MCP 与连接器接入 |
 
 推荐组合为：`product-intake` -> `delivery-orchestration` -> 体验/架构技能 -> 工程实现 -> `quality-gate` 与 `security-risk-review` -> `release-readiness`。
+
+补充能力 skills：`prompt-template-library`、`test-generation`、`performance-analysis`、`internationalization-support`、`documentation-generation`、`dependency-vulnerability-scan`、`cicd-integration`、`monorepo-awareness`。
 
 ## 6. MCP 与外部集成
 

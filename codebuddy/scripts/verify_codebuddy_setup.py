@@ -22,6 +22,12 @@ SKILLS = (
     "architecture-decision", "quality-gate", "release-readiness",
     "security-risk-review", "integration-onboarding",
 )
+SUPPLEMENTAL_SKILLS = (
+    "prompt-template-library", "test-generation", "performance-analysis",
+    "internationalization-support", "documentation-generation",
+    "dependency-vulnerability-scan", "cicd-integration", "monorepo-awareness",
+)
+ALL_SKILLS = SKILLS + SUPPLEMENTAL_SKILLS
 
 
 def fail(message: str) -> None:
@@ -50,6 +56,10 @@ def validate_structure() -> None:
         ROOT / ".codebuddy/settings.json",
         ROOT / ".mcp.json",
         ROOT / ".codebuddy/hooks/guard_secrets.py",
+        ROOT / ".codebuddy/project-context.md",
+        ROOT / ".codebuddy/memory.md",
+        ROOT / ".codebuddy/errors.md",
+        ROOT / ".codebuddy/rules.md",
         ROOT / "docs/CodeBuddy-初始化指南.md",
     ):
         read(path)
@@ -59,10 +69,14 @@ def validate_structure() -> None:
         content = read(ROOT / ".codebuddy/agents" / f"{name}.md")
         if f"name: {name}" not in content or not re.search(r"[\u4e00-\u9fff]", content):
             fail(f"Subagent 内容不完整：{name}")
-    for name in SKILLS:
+    for name in ALL_SKILLS:
         content = read(ROOT / ".codebuddy/skills" / name / "SKILL.md")
         if f"name: {name}" not in content or "allowed-tools:" not in content:
             fail(f"Skill 元数据或最小权限不完整：{name}")
+    context = read(ROOT / ".codebuddy/project-context.md")
+    for marker in ("技术栈", "核心架构", "领域词表", "关键约束", "已知技术债"):
+        if marker not in context:
+            fail(f"项目上下文模板缺少栏目：{marker}")
 
 
 def validate_config() -> None:
@@ -104,7 +118,8 @@ def validate_guard() -> None:
 
 def validate_content() -> None:
     paths = [ROOT / "CODEBUDDY.md", ROOT / "docs/CodeBuddy-初始化指南.md"]
-    paths.extend(ROOT / ".codebuddy/skills" / name / "SKILL.md" for name in SKILLS)
+    paths.extend(ROOT / ".codebuddy" / name for name in ("project-context.md", "memory.md", "rules.md", "errors.md"))
+    paths.extend(ROOT / ".codebuddy/skills" / name / "SKILL.md" for name in ALL_SKILLS)
     forbidden = ("酒" + "店", "旅" + "行", "抓" + "取")
     for path in paths:
         value = read(path)

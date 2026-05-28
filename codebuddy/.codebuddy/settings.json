@@ -13,7 +13,15 @@
       "Bash(terraform destroy*)",
       "Bash(kubectl apply*)",
       "Bash(kubectl delete*)",
-      "Bash(docker push*)"
+      "Bash(docker push*)",
+      "Bash(helm upgrade*)",
+      "Bash(helm uninstall*)",
+      "Bash(psql -c*)",
+      "Bash(mysql -e*)",
+      "Bash(prisma migrate*)",
+      "Bash(alembic upgrade*)",
+      "Bash(git commit --no-verify*)",
+      "Bash(git commit -n*)"
     ]
   },
   "hooks": {

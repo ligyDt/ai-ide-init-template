@@ -38,6 +38,17 @@ SKILLS = (
     "security-risk-review",
     "integration-onboarding",
 )
+SUPPLEMENTAL_SKILLS = (
+    "prompt-template-library",
+    "test-generation",
+    "performance-analysis",
+    "internationalization-support",
+    "documentation-generation",
+    "dependency-vulnerability-scan",
+    "cicd-integration",
+    "monorepo-awareness",
+)
+ALL_SKILLS = SKILLS + SUPPLEMENTAL_SKILLS
 PLUGIN_MARKERS = (
     ("GitHub", "/github/"),
     ("Browser", "/browser/"),
@@ -120,8 +131,25 @@ def validate_agents() -> None:
             fail(f"审查代理必须为只读：{name}")
 
 
+def validate_context_files() -> None:
+    for name in ("project-context.md", "memory.md", "rules.md", "errors.md"):
+        value = text(ROOT / ".codex" / name)
+        if not contains_chinese(value):
+            fail(f"上下文能力文件必须使用中文：.codex/{name}")
+    project_context = text(ROOT / ".codex" / "project-context.md")
+    for marker in ("技术栈", "核心架构", "领域词表", "关键约束", "已知技术债"):
+        if marker not in project_context:
+            fail(f"项目上下文模板缺少栏目：{marker}")
+    memory = text(ROOT / ".codex" / "memory.md")
+    if "已确认决策" not in memory or "已否定方案" not in memory:
+        fail("项目记忆模板缺少决策沉淀栏目")
+    errors = text(ROOT / ".codex" / "errors.md")
+    if "错误免疫库" not in errors or "根本原因" not in errors:
+        fail("错误免疫库模板结构不完整")
+
+
 def validate_skills() -> None:
-    for name in SKILLS:
+    for name in ALL_SKILLS:
         skill = ROOT / ".agents" / "skills" / name / "SKILL.md"
         metadata = ROOT / ".agents" / "skills" / name / "agents" / "openai.yaml"
         skill_text = text(skill)
@@ -147,7 +175,8 @@ def validate_skills() -> None:
 
 def validate_chinese_and_generic_scope() -> None:
     markdown_paths = [ROOT / "AGENTS.md", GUIDE]
-    markdown_paths.extend(ROOT / ".agents" / "skills" / name / "SKILL.md" for name in SKILLS)
+    markdown_paths.extend(ROOT / ".codex" / name for name in ("project-context.md", "memory.md", "rules.md", "errors.md"))
+    markdown_paths.extend(ROOT / ".agents" / "skills" / name / "SKILL.md" for name in ALL_SKILLS)
     forbidden = ("酒" + "店", "旅" + "行", "抓" + "取")
     for path in markdown_paths:
         value = text(path)
@@ -229,6 +258,7 @@ def report_integrations() -> None:
 def main() -> int:
     validate_config()
     validate_agents()
+    validate_context_files()
     validate_skills()
     validate_chinese_and_generic_scope()
     validate_guard()

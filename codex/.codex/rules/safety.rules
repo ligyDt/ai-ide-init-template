@@ -82,6 +82,40 @@ prefix_rule(
     not_match = ["helm lint ./chart", "helm list"],
 )
 
+# 数据库、迁移和高风险数据操作必须确认目标环境与回滚策略。
+prefix_rule(
+    pattern = [["psql", "mysql", "sqlite3"], ["-c", "-e"]],
+    decision = "prompt",
+    justification = "直接数据库命令可能造成数据变更；执行前必须确认环境、语句和备份情况。",
+    match = ["psql -c \"DROP TABLE users\"", "mysql -e \"DELETE FROM orders\""],
+    not_match = ["psql --version", "mysql --help"],
+)
+
+prefix_rule(
+    pattern = [["prisma", "sequelize", "knex", "alembic", "flyway"], ["migrate", "db:migrate", "upgrade", "repair"]],
+    decision = "prompt",
+    justification = "数据库迁移会改变持久化结构，请确认环境、迁移内容和回滚方案。",
+    match = ["prisma migrate deploy", "alembic upgrade head"],
+    not_match = ["prisma validate", "alembic history"],
+)
+
+# 关闭质量或安全检查属于高风险动作。
+prefix_rule(
+    pattern = [["npm", "pnpm", "yarn"], ["install", "add"], ["--force", "--legacy-peer-deps", "--ignore-scripts"]],
+    decision = "prompt",
+    justification = "绕过依赖校验或脚本限制可能引入供应链风险，请先审查原因。",
+    match = ["npm install --force", "pnpm add lodash --ignore-scripts"],
+    not_match = ["npm install", "pnpm add zod"],
+)
+
+prefix_rule(
+    pattern = [["git", "commit"], ["--no-verify", "-n"]],
+    decision = "prompt",
+    justification = "跳过 Git hooks 可能绕过质量或安全检查，请确认必要性。",
+    match = ["git commit --no-verify -m test", "git commit -n -m test"],
+    not_match = ["git commit -m test", "git status"],
+)
+
 # 连接器和认证状态的变更必须由用户批准。
 prefix_rule(
     pattern = ["codex", "mcp", ["add", "remove", "login", "logout"]],

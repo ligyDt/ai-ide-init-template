@@ -91,7 +91,24 @@ codex mcp get openaiDeveloperDocs
 | `.codex/hooks.json` | 生命周期钩子触发配置 | 不可 |
 | `.codex/hooks/` | 本地安全检查脚本 | 不可 |
 | `.codex/rules/` | 高风险命令审批或阻断策略 | 不可 |
-| `.agents/skills/` | 可复用的流程能力与界面元数据 | 不可 |
+| `.codex/project-context.md` | 项目上下文、技术栈、领域词表、约束和技术债模板 | 不可 |
+| `.codex/memory.md` | 长期偏好、已确认决策、已否定方案和复盘摘要 | 不可 |
+| `.codex/errors.md` | 可复发问题的根因、解决方案和预防措施 | 不可 |
+| `.codex/rules.md` | 项目专属工程规则、禁止清单、依赖和许可证边界 | 不可 |
+| `.agents/skills/` | 可复用的流程能力、补充能力与界面元数据 | 不可 |
+
+### 3.3 能力配置全景
+
+| 层级 | Codex 文件 | 说明 |
+| --- | --- | --- |
+| 认知与上下文层 | `.codex/project-context.md` | 记录项目基本信息、技术栈、架构、领域词表、约束和技术债。 |
+| 角色与人格层 | `.codex/agents/*.toml` | 七类自定义代理覆盖产品、体验、工程、质量、运维和安全。 |
+| 工程规范与约束层 | `.codex/rules.md`、`.codex/rules/safety.rules` | 记录工程规范、禁止清单、ADR、依赖和危险命令规则。 |
+| 自动化执行层 | `.agents/skills/*`、hooks、rules | 通过流程 skill、hook 和命令规则组织可验证执行。 |
+| 安全与合规层 | `.codex/hooks/guard_secrets.py`、`security-risk-review` | 拦截凭据和高风险动作，审查隐私、支付、部署和生产访问。 |
+| 学习与自进化层 | `.codex/memory.md`、`.codex/errors.md` | 沉淀偏好、决策、错误免疫和复盘结论。 |
+| 协同与沟通层 | `delivery-orchestration`、代理交接物 | 明确多代理分工、同步点、合并方式和人工介入条件。 |
+| 平台与可观测层 | `release-readiness`、`cicd-integration`、`performance-analysis` | 管理 CI/CD、成本、Token、延迟、质量、监控、降级和回滚。 |
 
 ## 4. 七个角色代理
 
@@ -132,14 +149,27 @@ Skills 位于 `.agents/skills/`，可由用户显式调用，也可在匹配任�
 | `$security-risk-review` | 审查敏感数据与高风险动作 | `使用 $security-risk-review 审查第三方接入。` |
 | `$integration-onboarding` | 安全接入 MCP、插件或连接器 | `使用 $integration-onboarding 接入研发工具。` |
 
-### 5.1 组合方式
+### 5.1 八个补充能力 Skills
+
+| Skill | 用途 |
+| --- | --- |
+| `$prompt-template-library` | 沉淀标准化提示模板。 |
+| `$test-generation` | 生成 TDD、单测、集成、边界和回归验证方案。 |
+| `$performance-analysis` | 定位性能热点并规划可回滚优化。 |
+| `$internationalization-support` | 规划多语言、时区、格式化和本地化验收。 |
+| `$documentation-generation` | 生成 README、API、架构、运维和交接文档。 |
+| `$dependency-vulnerability-scan` | 审查依赖漏洞、许可证和供应链风险。 |
+| `$cicd-integration` | 设计 CI/CD、质量门禁、发布审批和回滚路径。 |
+| `$monorepo-awareness` | 分析单仓多包边界、影响范围和最小验证集合。 |
+
+### 5.2 组合方式
 
 - 新产品能力：`$product-intake` -> `$delivery-orchestration` -> 需要的专业流程。
 - 新外部服务：`$integration-onboarding` -> `$security-risk-review` -> `$architecture-decision`。
 - 用户界面交付：`$experience-specification` -> 工程实施 -> `$quality-gate`。
 - 环境交付：`$security-risk-review` -> `$release-readiness` -> 经批准后的非生产验证。
 
-### 5.2 新增业务专属 Skill
+### 5.3 新增业务专属 Skill
 
 后续项目需要专属流程时：
 

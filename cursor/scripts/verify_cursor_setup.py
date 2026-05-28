@@ -23,6 +23,12 @@ SKILLS = (
     "architecture-decision", "quality-gate", "release-readiness",
     "security-risk-review", "integration-onboarding",
 )
+SUPPLEMENTAL_SKILLS = (
+    "prompt-template-library", "test-generation", "performance-analysis",
+    "internationalization-support", "documentation-generation",
+    "dependency-vulnerability-scan", "cicd-integration", "monorepo-awareness",
+)
+ALL_SKILLS = SKILLS + SUPPLEMENTAL_SKILLS
 
 
 def fail(message: str) -> None:
@@ -51,10 +57,14 @@ def validate_structure() -> None:
         ROOT / ".cursor/mcp.json",
         ROOT / ".cursor/hooks.json",
         ROOT / ".cursor/hooks/guard_secrets.py",
+        ROOT / ".cursor/project-context.md",
+        ROOT / ".cursor/memory.md",
+        ROOT / ".cursor/errors.md",
+        ROOT / ".cursor/rules.md",
         ROOT / "docs/Cursor-初始化指南.md",
     ):
         read(path)
-    for rule in ("000-collaboration.mdc", "001-security.mdc", "002-integrations.mdc"):
+    for rule in ("000-collaboration.mdc", "001-security.mdc", "002-integrations.mdc", "003-engineering.mdc", "004-learning.mdc", "005-platform-observability.mdc"):
         value = read(ROOT / ".cursor/rules" / rule)
         if "alwaysApply: true" not in value or not re.search(r"[\u4e00-\u9fff]", value):
             fail(f"规则元数据或中文内容不完整：{rule}")
@@ -62,10 +72,14 @@ def validate_structure() -> None:
         value = read(ROOT / ".cursor/agents" / f"{agent}.md")
         if f"name: {agent}" not in value or not re.search(r"[\u4e00-\u9fff]", value):
             fail(f"子代理不完整：{agent}")
-    for skill in SKILLS:
+    for skill in ALL_SKILLS:
         value = read(ROOT / ".cursor/skills" / skill / "SKILL.md")
         if f"name: {skill}" not in value or not value.startswith("---\n"):
             fail(f"skill 元数据不完整：{skill}")
+    context = read(ROOT / ".cursor/project-context.md")
+    for marker in ("技术栈", "核心架构", "领域词表", "关键约束", "已知技术债"):
+        if marker not in context:
+            fail(f"项目上下文模板缺少栏目：{marker}")
 
 
 def validate_config_and_hooks() -> None:
@@ -94,7 +108,8 @@ def validate_config_and_hooks() -> None:
 
 def validate_content() -> None:
     visible = [ROOT / "AGENTS.md", ROOT / "docs/Cursor-初始化指南.md"]
-    visible.extend(ROOT / ".cursor/skills" / item / "SKILL.md" for item in SKILLS)
+    visible.extend(ROOT / ".cursor" / item for item in ("project-context.md", "memory.md", "rules.md", "errors.md"))
+    visible.extend(ROOT / ".cursor/skills" / item / "SKILL.md" for item in ALL_SKILLS)
     forbidden = ("酒" + "店", "旅" + "行", "抓" + "取")
     for path in visible:
         value = read(path)

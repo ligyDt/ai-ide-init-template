@@ -1,0 +1,4 @@
+interface:
+  display_name: "性能分析与重构"
+  short_description: "用证据定位性能热点，并规划可回滚优化。"
+  default_prompt: "使用 $performance-analysis 分析这个性能问题并给出优化计划。"

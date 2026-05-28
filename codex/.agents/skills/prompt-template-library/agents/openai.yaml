@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prompt 模板库"
+  short_description: "沉淀标准化提示输入，减少重复沟通和格式漂移。"
+  default_prompt: "使用 $prompt-template-library 为这个研发场景生成标准提示模板。"

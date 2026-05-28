@@ -1,0 +1,4 @@
+interface:
+  display_name: "多语言与 i18n 支持"
+  short_description: "规划本地化文案、格式、时区和验收策略。"
+  default_prompt: "使用 $internationalization-support 为当前功能规划多语言支持。"

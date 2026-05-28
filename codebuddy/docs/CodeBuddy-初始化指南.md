@@ -14,7 +14,11 @@ codebuddy/
 ├── .codebuddy/
 │   ├── settings.json
 │   ├── agents/                  # 七个 Subagents
-│   ├── skills/                  # 八个 Skills
+│   ├── skills/                  # 八个流程 Skills 与八个补充能力 Skills
+│   ├── project-context.md       # 项目上下文、技术栈、领域词表和约束
+│   ├── memory.md                # 长期偏好、决策和复盘摘要
+│   ├── errors.md                # 错误免疫库
+│   ├── rules.md                 # 项目专属工程规则
 │   └── hooks/guard_secrets.py
 ├── .mcp.json                    # 项目 MCP
 ├── scripts/verify_codebuddy_setup.py
@@ -22,6 +26,19 @@ codebuddy/
 ```
 
 复制本目录内容到目标项目根目录即可。个人覆盖项和本地凭据配置放在 `.codebuddy/settings.local.json` 或工具批准的安全存储中，并不得提交版本库。
+
+### 能力配置全景
+
+| 层级 | CodeBuddy 承载位置 |
+| --- | --- |
+| 认知与上下文层 | `.codebuddy/project-context.md`、README |
+| 角色与人格层 | `.codebuddy/agents/*.md` |
+| 工程规范与约束层 | `.codebuddy/rules.md`、`.codebuddy/settings.json` |
+| 自动化执行层 | `.codebuddy/skills/*`、settings hooks |
+| 安全与合规层 | `.codebuddy/hooks/guard_secrets.py` |
+| 学习与自进化层 | `.codebuddy/memory.md`、`.codebuddy/errors.md` |
+| 协同与沟通层 | `delivery-orchestration` 与 Subagents 交接协议 |
+| 平台与可观测层 | `release-readiness`、`cicd-integration`、`performance-analysis` |
 
 ## 3. 职责与流程
 
@@ -36,6 +53,8 @@ codebuddy/
 | `security-architect` | 安全审查 | 默认只读并可阻断 |
 
 八个 Skills 分别为需求收敛、交付编排、体验规格、架构决策、质量门禁、发布准备、安全审查与集成接入。通常按“需求 -> 交付 -> 体验/架构 -> 实施 -> 质量/安全 -> 发布准备”的顺序使用。
+
+补充能力 Skills 包括：`prompt-template-library`、`test-generation`、`performance-analysis`、`internationalization-support`、`documentation-generation`、`dependency-vulnerability-scan`、`cicd-integration`、`monorepo-awareness`。
 
 ## 4. 设置、MCP 与 Hooks
 
