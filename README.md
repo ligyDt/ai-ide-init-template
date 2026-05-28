@@ -6,6 +6,8 @@
 
 面向 AI IDE 与编程智能体的中文项目级初始化模板集合，为 [OpenAI Codex](https://developers.openai.com/codex)、[Cursor](https://www.cursor.com/)、[CodeBuddy](https://www.codebuddy.ai/) 和 [TRAE](https://www.trae.cn/) 提供可复制、可审查、可离线验证的研发协作基线。
 
+> “工欲善其事，必先利其器。”出自《论语·卫灵公》。对 AI IDE 项目而言，“利器”不只是模型本身，更是进入业务前已经准备好的项目上下文、角色分工、流程技能、安全边界和验证脚本。本项目正是把这些准备工作沉淀为可复制模板，帮助团队在开始写第一行业务代码之前，先让 AI Agent 拥有清晰约束、可用能力和可复核的交付方式。
+
 ## 项目简介
 
 AI IDE 正在从“代码补全工具”变成能读仓库、写文件、调用终端、连接外部系统、协同多个代理完成任务的研发工作台。问题也随之变化：工具越强，越需要在项目一开始就把职责、流程、安全边界和验收方式讲清楚。
@@ -44,6 +46,14 @@ AI IDE 正在从“代码补全工具”变成能读仓库、写文件、调用�
 - 提供离线校验脚本，确保模板结构、中文内容、MCP 基线与安全防护可复核。
 
 本项目**不包含**具体业务应用、云厂商部署配置、生产凭据、真实支付流程或自动发布逻辑。
+
+## 能力配置全景地图
+
+下面这张图是本项目配置设计的总览，用来说明 AI IDE 初始化不只是放几条提示词，而是要同时覆盖上下文、角色、工程约束、自动化、安全、学习沉淀、协同和平台观测八个层面。四套模板的文件结构和验证脚本均围绕这张地图落地，但每个工具只使用自身已确认支持的原生机制。
+
+![AI IDE 初始化工具能力配置全景地图](docs/assets/ai-ide-capability-map.svg)
+
+原始参考文档已保留在 [`docs/reference/codex-global-config.md`](docs/reference/codex-global-config.md)。该文档是一份未完全完成的能力草案，本仓库已将其中适合项目模板化的内容整理为可复制、可验证、无凭据的四套 AI IDE 初始化模板。
 
 ## 已支持工具
 
@@ -149,6 +159,11 @@ ai-ide-init-template/
 ├── LICENSE                           # MIT 开源协议
 ├── CONTRIBUTING.md                   # 贡献规则：新增模板、官方依据、验证和安全要求
 ├── SECURITY.md                       # 安全策略：漏洞报告、凭据处理和高风险边界
+├── docs/                             # 根级资料：能力地图和原始参考文档
+│   ├── assets/
+│   │   └── ai-ide-capability-map.svg # README 展示的能力配置全景地图
+│   └── reference/
+│       └── codex-global-config.md    # 用户提供的原始能力配置参考文档
 ├── scripts/
 │   └── verify_all_templates.py        # 仓库级聚合验证：依次检查四套模板
 ├── codex/                            # OpenAI Codex 项目模板，可单独复制到目标项目
@@ -216,6 +231,8 @@ ai-ide-init-template/
 | [`LICENSE`](LICENSE) | MIT 开源协议 |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | 贡献规则，约束新增模板、官方依据、验证要求和秘密材料处理 |
 | [`SECURITY.md`](SECURITY.md) | 安全报告方式与模板安全基线 |
+| [`docs/assets/ai-ide-capability-map.svg`](docs/assets/ai-ide-capability-map.svg) | README 中展示的 AI IDE 能力配置全景地图 |
+| [`docs/reference/codex-global-config.md`](docs/reference/codex-global-config.md) | 用户提供的原始能力配置参考文档，作为模板完善依据保留 |
 | [`scripts/verify_all_templates.py`](scripts/verify_all_templates.py) | 聚合验证入口，依次运行四套模板的离线检查并报告本机工具可发现状态 |
 
 ### `codex/` 模板

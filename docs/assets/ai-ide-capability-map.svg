@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1820" viewBox="0 0 1400 1820" role="img" aria-labelledby="title desc">
+  <title id="title">AI IDE 初始化工具能力配置全景地图</title>
+  <desc id="desc">覆盖 Codex、Cursor、CodeBuddy、TRAE 的 8 大能力层和 8 项补充能力。</desc>
+  <style>
+    .bg { fill: #07090f; }
+    .title { fill: #f8fafc; font: 700 40px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .subtitle { fill: #cbd5e1; font: 700 24px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .section-title { fill: #f8fafc; font: 700 28px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .card-title { fill: #f8fafc; font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .card-text { fill: #dbeafe; font: 500 19px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .small { fill: #cbd5e1; font: 600 18px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .note { fill: #f8fafc; font: 700 26px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .box { rx: 14; ry: 14; stroke-width: 2; }
+    .purple { fill: #40358f; stroke: #a5b4fc; }
+    .green { fill: #064e3b; stroke: #34d399; }
+    .brown { fill: #7c2d12; stroke: #fb923c; }
+    .blue { fill: #164e82; stroke: #60a5fa; }
+    .red { fill: #7f1d1d; stroke: #f87171; }
+    .amber { fill: #783f04; stroke: #f59e0b; }
+    .lime { fill: #21570a; stroke: #84cc16; }
+    .gray { fill: #3f3f46; stroke: #a1a1aa; }
+    .outline { fill: transparent; stroke: #e5e7eb; stroke-width: 2; stroke-dasharray: 10 10; }
+  </style>
+
+  <rect class="bg" width="1400" height="1820"/>
+  <text class="title" x="700" y="62" text-anchor="middle">AI IDE 初始化工具 · 能力配置全景地图</text>
+  <text class="subtitle" x="700" y="102" text-anchor="middle">8 大维度 · 覆盖 Codex / Cursor / CodeBuddy / TRAE</text>
+
+  <g transform="translate(60,150)">
+    <rect class="box purple" width="620" height="76"/>
+    <text class="section-title" x="310" y="48" text-anchor="middle">① 认知与上下文层</text>
+    <rect class="box purple" x="0" y="96" width="292" height="104"/>
+    <text class="card-title" x="146" y="136" text-anchor="middle">记忆系统</text>
+    <text class="card-text" x="146" y="171" text-anchor="middle">短期 / 长期 / 项目级</text>
+    <rect class="box purple" x="328" y="96" width="292" height="104"/>
+    <text class="card-title" x="474" y="136" text-anchor="middle">上下文管理</text>
+    <text class="card-text" x="474" y="171" text-anchor="middle">窗口策略 / 压缩 / 优先级</text>
+    <rect class="box purple" x="0" y="220" width="292" height="104"/>
+    <text class="card-title" x="146" y="260" text-anchor="middle">项目知识图谱</text>
+    <text class="card-text" x="146" y="295" text-anchor="middle">架构 / 依赖 / 领域词表</text>
+    <rect class="box purple" x="328" y="220" width="292" height="104"/>
+    <text class="card-title" x="474" y="260" text-anchor="middle">意图理解</text>
+    <text class="card-text" x="474" y="295" text-anchor="middle">歧义消解 / 需求拆解</text>
+  </g>
+
+  <g transform="translate(720,150)">
+    <rect class="box green" width="620" height="76"/>
+    <text class="section-title" x="310" y="48" text-anchor="middle">② 角色与人格层</text>
+    <rect class="box green" x="0" y="96" width="292" height="104"/>
+    <text class="card-title" x="146" y="136" text-anchor="middle">研发角色矩阵</text>
+    <text class="card-text" x="146" y="171" text-anchor="middle">前端 / 后端 / 架构 / SRE</text>
+    <rect class="box green" x="328" y="96" width="292" height="104"/>
+    <text class="card-title" x="474" y="136" text-anchor="middle">语言专家角色</text>
+    <text class="card-text" x="474" y="171" text-anchor="middle">Java / Go / Python / C++</text>
+    <rect class="box green" x="0" y="220" width="292" height="104"/>
+    <text class="card-title" x="146" y="260" text-anchor="middle">设计 / 测试角色</text>
+    <text class="card-text" x="146" y="295" text-anchor="middle">UI / UX / QA / 安全审计</text>
+    <rect class="box green" x="328" y="220" width="292" height="104"/>
+    <text class="card-title" x="474" y="260" text-anchor="middle">角色切换协议</text>
+    <text class="card-text" x="474" y="295" text-anchor="middle">场景感知 / 自动切换</text>
+  </g>
+
+  <g transform="translate(60,510)">
+    <rect class="box brown" width="620" height="76"/>
+    <text class="section-title" x="310" y="48" text-anchor="middle">③ 工程规范与约束层</text>
+    <rect class="box brown" x="0" y="96" width="292" height="104"/>
+    <text class="card-title" x="146" y="136" text-anchor="middle">代码规范 / 风格</text>
+    <text class="card-text" x="146" y="171" text-anchor="middle">lint / format / naming</text>
+    <rect class="box brown" x="328" y="96" width="292" height="104"/>
+    <text class="card-title" x="474" y="136" text-anchor="middle">边界与禁令清单</text>
+    <text class="card-text" x="474" y="171" text-anchor="middle">禁止包 / 危险操作清单</text>
+    <rect class="box brown" x="0" y="220" width="292" height="104"/>
+    <text class="card-title" x="146" y="260" text-anchor="middle">提交 / 分支规范</text>
+    <text class="card-text" x="146" y="295" text-anchor="middle">Conventional Commits</text>
+    <rect class="box brown" x="328" y="220" width="292" height="104"/>
+    <text class="card-title" x="474" y="260" text-anchor="middle">架构决策记录</text>
+    <text class="card-text" x="474" y="295" text-anchor="middle">ADR / 技术债标记</text>
+  </g>
+
+  <g transform="translate(720,510)">
+    <rect class="box blue" width="620" height="76"/>
+    <text class="section-title" x="310" y="48" text-anchor="middle">④ 自动化执行层</text>
+    <rect class="box blue" x="0" y="96" width="292" height="104"/>
+    <text class="card-title" x="146" y="136" text-anchor="middle">Agent 编排</text>
+    <text class="card-text" x="146" y="171" text-anchor="middle">多步任务 / 回滚 / 重试</text>
+    <rect class="box blue" x="328" y="96" width="292" height="104"/>
+    <text class="card-title" x="474" y="136" text-anchor="middle">MCP 工具集</text>
+    <text class="card-text" x="474" y="171" text-anchor="middle">文件 / 终端 / 浏览器 / DB</text>
+    <rect class="box blue" x="0" y="220" width="292" height="104"/>
+    <text class="card-title" x="146" y="260" text-anchor="middle">Hook 系统</text>
+    <text class="card-text" x="146" y="295" text-anchor="middle">pre / post 事件触发</text>
+    <rect class="box blue" x="328" y="220" width="292" height="104"/>
+    <text class="card-title" x="474" y="260" text-anchor="middle">Skill 库</text>
+    <text class="card-text" x="474" y="295" text-anchor="middle">可复用专项操作包</text>
+  </g>
+
+  <g transform="translate(60,870)">
+    <rect class="box red" width="620" height="76"/>
+    <text class="section-title" x="310" y="48" text-anchor="middle">⑤ 安全与合规层</text>
+    <rect class="box red" x="0" y="96" width="292" height="104"/>
+    <text class="card-title" x="146" y="136" text-anchor="middle">权限沙箱</text>
+    <text class="card-text" x="146" y="171" text-anchor="middle">最小权限 / 审批流</text>
+    <rect class="box red" x="328" y="96" width="292" height="104"/>
+    <text class="card-title" x="474" y="136" text-anchor="middle">敏感信息防泄漏</text>
+    <text class="card-text" x="474" y="171" text-anchor="middle">密钥 / PII 扫描屏蔽</text>
+    <rect class="box red" x="0" y="220" width="292" height="104"/>
+    <text class="card-title" x="146" y="260" text-anchor="middle">操作审计日志</text>
+    <text class="card-text" x="146" y="295" text-anchor="middle">可追溯 / 不可篡改</text>
+    <rect class="box red" x="328" y="220" width="292" height="104"/>
+    <text class="card-title" x="474" y="260" text-anchor="middle">合规 / 许可证检查</text>
+    <text class="card-text" x="474" y="295" text-anchor="middle">OSS license / GDPR</text>
+  </g>
+
+  <g transform="translate(720,870)">
+    <rect class="box amber" width="620" height="76"/>
+    <text class="section-title" x="310" y="48" text-anchor="middle">⑥ 学习与自进化层</text>
+    <rect class="box amber" x="0" y="96" width="292" height="104"/>
+    <text class="card-title" x="146" y="136" text-anchor="middle">错误免疫机制</text>
+    <text class="card-text" x="146" y="171" text-anchor="middle">沟通中解决过不再犯</text>
+    <rect class="box amber" x="328" y="96" width="292" height="104"/>
+    <text class="card-title" x="474" y="136" text-anchor="middle">用户反馈闭环</text>
+    <text class="card-text" x="474" y="171" text-anchor="middle">thumbs / inline 纠偏</text>
+    <rect class="box amber" x="0" y="220" width="292" height="104"/>
+    <text class="card-title" x="146" y="260" text-anchor="middle">规则自动沉淀</text>
+    <text class="card-text" x="146" y="295" text-anchor="middle">对话 → 规范 → 规则库</text>
+    <rect class="box amber" x="328" y="220" width="292" height="104"/>
+    <text class="card-title" x="474" y="260" text-anchor="middle">知识蒸馏</text>
+    <text class="card-text" x="474" y="295" text-anchor="middle">项目最佳实践提炼</text>
+  </g>
+
+  <g transform="translate(60,1230)">
+    <rect class="box lime" width="620" height="76"/>
+    <text class="section-title" x="310" y="48" text-anchor="middle">⑦ 协同与沟通层</text>
+    <rect class="box lime" x="0" y="96" width="292" height="104"/>
+    <text class="card-title" x="146" y="136" text-anchor="middle">多 Agent 协作</text>
+    <text class="card-text" x="146" y="171" text-anchor="middle">任务分配 / 结果合并</text>
+    <rect class="box lime" x="328" y="96" width="292" height="104"/>
+    <text class="card-title" x="474" y="136" text-anchor="middle">人机交接协议</text>
+    <text class="card-text" x="474" y="171" text-anchor="middle">置信度低时升级人工</text>
+    <rect class="box lime" x="0" y="220" width="292" height="104"/>
+    <text class="card-title" x="146" y="260" text-anchor="middle">沟通风格配置</text>
+    <text class="card-text" x="146" y="295" text-anchor="middle">详细 / 简洁 / 提问优先</text>
+    <rect class="box lime" x="328" y="220" width="292" height="104"/>
+    <text class="card-title" x="474" y="260" text-anchor="middle">PR / Review 集成</text>
+    <text class="card-text" x="474" y="295" text-anchor="middle">代码审查 / 注释生成</text>
+  </g>
+
+  <g transform="translate(720,1230)">
+    <rect class="box gray" width="620" height="76"/>
+    <text class="section-title" x="310" y="48" text-anchor="middle">⑧ 平台与可观测层</text>
+    <rect class="box gray" x="0" y="96" width="292" height="104"/>
+    <text class="card-title" x="146" y="136" text-anchor="middle">成本 / Token 监控</text>
+    <text class="card-text" x="146" y="171" text-anchor="middle">用量 / 预算 / 限流</text>
+    <rect class="box gray" x="328" y="96" width="292" height="104"/>
+    <text class="card-title" x="474" y="136" text-anchor="middle">延迟 / 质量评估</text>
+    <text class="card-text" x="474" y="171" text-anchor="middle">响应速度 / 准确率</text>
+    <rect class="box gray" x="0" y="220" width="292" height="104"/>
+    <text class="card-title" x="146" y="260" text-anchor="middle">多模型路由</text>
+    <text class="card-text" x="146" y="295" text-anchor="middle">任务 → 最优模型</text>
+    <rect class="box gray" x="328" y="220" width="292" height="104"/>
+    <text class="card-title" x="474" y="260" text-anchor="middle">离线 / 本地模式</text>
+    <text class="card-text" x="474" y="295" text-anchor="middle">隐私 / 断网降级</text>
+  </g>
+
+  <g transform="translate(60,1600)">
+    <rect class="outline" width="1280" height="64" rx="14"/>
+    <text class="note" x="640" y="42" text-anchor="middle">补充新增维度：Prompt 模板库 / TDD / 性能分析 / i18n / 文档 / SCA / CI/CD / Monorepo</text>
+  </g>
+
+  <text class="small" x="700" y="1760" text-anchor="middle">本图为模板能力全景，具体落地以各工具原生配置、非生产验证和用户明确授权为边界。</text>
+</svg>
