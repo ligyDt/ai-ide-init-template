@@ -316,10 +316,10 @@ ai-ide-init-template/
 | [`codex/.codex/hooks.json`](codex/.codex/hooks.json) | Codex Hook 注册文件，接入提示和工具负载安全检查 |
 | [`codex/.codex/hooks/guard_secrets.py`](codex/.codex/hooks/guard_secrets.py) | 凭据检测脚本，阻止明显密钥、私钥、连接串和非占位秘密值 |
 | [`codex/.codex/rules/safety.rules`](codex/.codex/rules/safety.rules) | 危险命令规则，覆盖强制推送、发布、部署、基础设施和授权变更 |
-| `codex/.codex/project-context.md` | 项目上下文模板，记录技术栈、架构、领域词表、约束和技术债 |
-| `codex/.codex/memory.md` | 项目记忆模板，记录长期偏好、决策和复盘摘要 |
-| `codex/.codex/errors.md` | 错误免疫库模板，记录可复发问题的根因和预防措施 |
-| `codex/.codex/rules.md` | 项目专属规则模板，补充工程规范、禁止清单和依赖许可证边界 |
+| [`codex/.codex/project-context.md`](codex/.codex/project-context.md) | 项目上下文模板，记录技术栈、架构、领域词表、约束和技术债 |
+| [`codex/.codex/memory.md`](codex/.codex/memory.md) | 项目记忆模板，记录长期偏好、决策和复盘摘要 |
+| [`codex/.codex/errors.md`](codex/.codex/errors.md) | 错误免疫库模板，记录可复发问题的根因和预防措施 |
+| [`codex/.codex/rules.md`](codex/.codex/rules.md) | 项目专属规则模板，补充工程规范、禁止清单和依赖许可证边界 |
 | `codex/.agents/skills/*/SKILL.md` | 8 个通用流程 Skills 与 8 个补充能力 Skills |
 | `codex/.agents/skills/*/agents/openai.yaml` | Codex Skills 的中文界面元数据 |
 | [`codex/docs/Codex-初始化指南.md`](codex/docs/Codex-初始化指南.md) | Codex 模板复制、验证、MCP、Hooks、Rules 和外部集成指南 |
@@ -332,10 +332,10 @@ ai-ide-init-template/
 | [`cursor/AGENTS.md`](cursor/AGENTS.md) | Cursor 项目中文总约束，定义协作职责与安全边界 |
 | `cursor/.cursor/rules/*.mdc` | Cursor 原生 Rules，覆盖协作、安全和外部集成规则 |
 | `cursor/.cursor/agents/*.md` | 7 个 Cursor 项目 Agents |
-| `cursor/.cursor/project-context.md` | 项目上下文模板 |
-| `cursor/.cursor/memory.md` | 项目记忆模板 |
-| `cursor/.cursor/errors.md` | 错误免疫库模板 |
-| `cursor/.cursor/rules.md` | 项目专属规则模板 |
+| [`cursor/.cursor/project-context.md`](cursor/.cursor/project-context.md) | 项目上下文模板 |
+| [`cursor/.cursor/memory.md`](cursor/.cursor/memory.md) | 项目记忆模板 |
+| [`cursor/.cursor/errors.md`](cursor/.cursor/errors.md) | 错误免疫库模板 |
+| [`cursor/.cursor/rules.md`](cursor/.cursor/rules.md) | 项目专属规则模板 |
 | `cursor/.cursor/skills/*/SKILL.md` | 8 个流程 Skills 与 8 个补充能力 Skills |
 | [`cursor/.cursor/mcp.json`](cursor/.cursor/mcp.json) | Cursor 项目 MCP，仅声明公开 OpenAI 开发文档服务 |
 | [`cursor/.cursor/hooks.json`](cursor/.cursor/hooks.json) | Cursor 原生 Hook 注册，覆盖提示、写入、Shell 和 MCP 事件 |
@@ -350,10 +350,10 @@ ai-ide-init-template/
 | [`codebuddy/CODEBUDDY.md`](codebuddy/CODEBUDDY.md) | CodeBuddy 项目自动读取的中文核心说明 |
 | [`codebuddy/.codebuddy/settings.json`](codebuddy/.codebuddy/settings.json) | CodeBuddy 项目共享配置，定义保守权限和 Hooks |
 | `codebuddy/.codebuddy/agents/*.md` | 7 个 CodeBuddy Subagents |
-| `codebuddy/.codebuddy/project-context.md` | 项目上下文模板 |
-| `codebuddy/.codebuddy/memory.md` | 项目记忆模板 |
-| `codebuddy/.codebuddy/errors.md` | 错误免疫库模板 |
-| `codebuddy/.codebuddy/rules.md` | 项目专属规则模板 |
+| [`codebuddy/.codebuddy/project-context.md`](codebuddy/.codebuddy/project-context.md) | 项目上下文模板 |
+| [`codebuddy/.codebuddy/memory.md`](codebuddy/.codebuddy/memory.md) | 项目记忆模板 |
+| [`codebuddy/.codebuddy/errors.md`](codebuddy/.codebuddy/errors.md) | 错误免疫库模板 |
+| [`codebuddy/.codebuddy/rules.md`](codebuddy/.codebuddy/rules.md) | 项目专属规则模板 |
 | `codebuddy/.codebuddy/skills/*/SKILL.md` | 8 个流程 Skills 与 8 个补充能力 Skills，含最小工具权限声明 |
 | [`codebuddy/.codebuddy/hooks/guard_secrets.py`](codebuddy/.codebuddy/hooks/guard_secrets.py) | CodeBuddy Hook 脚本，拦截提示和工具负载中的秘密值及高风险动作 |
 | [`codebuddy/.mcp.json`](codebuddy/.mcp.json) | CodeBuddy 项目 MCP，仅声明公开 OpenAI 开发文档服务 |
@@ -365,10 +365,10 @@ ai-ide-init-template/
 | 路径 | 能力描述 |
 | --- | --- |
 | [`trae/AGENTS.md`](trae/AGENTS.md) | TRAE 项目中文总约束，组织七类职责与高风险审批边界 |
-| `trae/.agents/project-context.md` | TRAE 保守上下文模板 |
-| `trae/.agents/memory.md` | TRAE 项目记忆模板 |
-| `trae/.agents/errors.md` | TRAE 错误免疫库模板 |
-| `trae/.agents/rules.md` | TRAE 项目专属规则模板 |
+| [`trae/.agents/project-context.md`](trae/.agents/project-context.md) | TRAE 保守上下文模板 |
+| [`trae/.agents/memory.md`](trae/.agents/memory.md) | TRAE 项目记忆模板 |
+| [`trae/.agents/errors.md`](trae/.agents/errors.md) | TRAE 错误免疫库模板 |
+| [`trae/.agents/rules.md`](trae/.agents/rules.md) | TRAE 项目专属规则模板 |
 | `trae/.agents/skills/*/SKILL.md` | 8 个流程 Skills 与 8 个补充能力 Skills |
 | [`trae/docs/TRAE-初始化指南.md`](trae/docs/TRAE-初始化指南.md) | TRAE Skills、MCP、自定义智能体、沙箱和人工验收指南 |
 | [`trae/scripts/verify_trae_setup.py`](trae/scripts/verify_trae_setup.py) | TRAE 保守模板离线验证脚本，确认未提交推测性 `.trae/` 配置 |
