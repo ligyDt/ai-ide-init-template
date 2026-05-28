@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Language: Chinese](https://img.shields.io/badge/docs-%E4%B8%AD%E6%96%87-blue.svg)](#项目简介)
 [![Templates](https://img.shields.io/badge/templates-Codex%20%7C%20Cursor%20%7C%20CodeBuddy%20%7C%20TRAE-4c1.svg)](#已支持工具)
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Compatible-green.svg)](SKILL.md)
 
 面向 AI IDE 与编程智能体的中文项目级初始化模板集合，为 [OpenAI Codex](https://developers.openai.com/codex)、[Cursor](https://www.cursor.com/)、[CodeBuddy](https://www.codebuddy.ai/) 和 [TRAE](https://www.trae.cn/) 提供可复制、可审查、可离线验证的研发协作基线。
 
@@ -15,6 +16,77 @@ AI IDE 正在从“代码补全工具”变成能读仓库、写文件、调用�
 这个项目就是为了解决“每次开新项目都要重新教 AI IDE 怎么工作”的问题。它把一套通用中文研发约定沉淀成可复制模板，让 Codex、Cursor、CodeBuddy、TRAE 在进入具体业务前，先拥有一致的项目理解、角色分工、交付流程和安全默认值。
 
 本项目将这些基线整理为四套**独立可复制**的模板。每套模板只使用对应 AI IDE 已确认支持的原生配置，不把某一个工具的目录结构强行套到其他工具上。
+
+## 立即安装和使用
+
+### 方式一：作为 Agent Skill 安装
+
+本仓库根目录就是一个可安装的 Agent Skill。支持通用 Skill 安装器的运行时可直接安装：
+
+```bash
+npx skills add ligyDt/ai-ide-init-template
+```
+
+安装后在 Agent 中说：
+
+```text
+把 AI IDE 初始化模板安装到这个项目，目标工具是 Cursor。
+```
+
+Agent 会读取根级 [`SKILL.md`](SKILL.md)，按目标工具调用安装脚本。可选目标工具为 `codex`、`cursor`、`codebuddy`、`trae`。
+
+### 方式二：克隆后脚本安装
+
+```bash
+git clone https://github.com/ligyDt/ai-ide-init-template.git
+cd ai-ide-init-template
+```
+
+完整安装某个工具的项目基线：
+
+```bash
+python3 scripts/install_template.py --tool cursor --target /path/to/your-project
+```
+
+只安装 16 个流程与补充能力 Skills：
+
+```bash
+python3 scripts/install_template.py --tool cursor --mode skills --target /path/to/your-project
+```
+
+先查看将写入哪些路径，不实际修改：
+
+```bash
+python3 scripts/install_template.py --tool cursor --target /path/to/your-project --dry-run
+```
+
+默认不会覆盖已有文件。确认需要覆盖时，再显式添加 `--overwrite`。
+
+### 方式三：安装到目标项目的 Skill 目录
+
+如果希望目标项目以后能在 IDE 内继续通过自然语言触发模板安装，可以只安装项目内安装型 Skill：
+
+```bash
+# Codex 或 TRAE：写入 .agents/skills/
+python3 scripts/install_template.py --tool codex --mode installer-skill --target /path/to/your-project
+
+# Cursor：写入 .cursor/skills/
+python3 scripts/install_template.py --tool cursor --mode installer-skill --target /path/to/your-project
+
+# CodeBuddy：写入 .codebuddy/skills/
+python3 scripts/install_template.py --tool codebuddy --mode installer-skill --target /path/to/your-project
+```
+
+安装完成后，目标项目中会出现 `ai-ide-init-template` Skill 及其自带安装脚本。它不保存凭据，也不默认启用外部账号、支付、部署或生产访问。
+
+### 安装后确认
+
+| 工具 | 检查事项 |
+| --- | --- |
+| Codex | 信任项目配置后检查 Agents、Skills、Hooks 与 `openaiDeveloperDocs` MCP |
+| Cursor | 检查 Rules、Agents、Skills、Hooks 面板；首次 MCP 加载前审阅审批提示 |
+| CodeBuddy | 检查 `CODEBUDDY.md`、Subagents、Skills、`/hooks` 与项目 MCP |
+| TRAE | 检查 `AGENTS.md` 与 Skills；按官方界面人工配置 MCP、智能体与沙箱 |
 
 ## 项目缘起
 
@@ -155,6 +227,7 @@ AI IDE 正在从“代码补全工具”变成能读仓库、写文件、调用�
 
 ```text
 ai-ide-init-template/
+├── SKILL.md                          # 根级 Agent Skill 入口，支持通用 Skill 安装器识别
 ├── README.md                         # 项目首页：背景、痛点、能力矩阵、复制方式和验证说明
 ├── LICENSE                           # MIT 开源协议
 ├── CONTRIBUTING.md                   # 贡献规则：新增模板、官方依据、验证和安全要求
@@ -164,7 +237,10 @@ ai-ide-init-template/
 │   │   └── ai-ide-capability-map-v2.svg # README 展示的能力配置全景地图
 │   └── reference/
 │       └── codex-global-config.md    # 用户提供的原始能力配置参考文档
+├── skills/
+│   └── ai-ide-init-template/          # 跨工具安装型 Skill，可在 IDE 内触发模板安装
 ├── scripts/
+│   ├── install_template.py            # 跨工具安装器：支持完整模板、仅 Skills、安装型 Skill 三种模式
 │   └── verify_all_templates.py        # 仓库级聚合验证：依次检查四套模板
 ├── codex/                            # OpenAI Codex 项目模板，可单独复制到目标项目
 │   ├── AGENTS.md                     # Codex 中文总规则：协作、数据、安全和外部访问边界
@@ -301,52 +377,6 @@ ai-ide-init-template/
 | `trae/.agents/skills/*/SKILL.md` | 8 个流程 Skills 与 8 个补充能力 Skills |
 | [`trae/docs/TRAE-初始化指南.md`](trae/docs/TRAE-初始化指南.md) | TRAE Skills、MCP、自定义智能体、沙箱和人工验收指南 |
 | [`trae/scripts/verify_trae_setup.py`](trae/scripts/verify_trae_setup.py) | TRAE 保守模板离线验证脚本，确认未提交推测性 `.trae/` 配置 |
-
-## 快速开始
-
-### 1. 获取模板
-
-```bash
-git clone https://github.com/ligyDt/ai-ide-init-template.git
-cd ai-ide-init-template
-```
-
-### 2. 选择工具并复制
-
-例如，要为一个现有项目接入 Cursor 模板：
-
-```bash
-cp -R cursor/. /path/to/your-project/
-cd /path/to/your-project
-python3 scripts/verify_cursor_setup.py
-```
-
-其他工具对应命令：
-
-```bash
-# Codex
-cp -R codex/. /path/to/your-project/
-python3 /path/to/your-project/scripts/verify_codex_setup.py
-
-# CodeBuddy
-cp -R codebuddy/. /path/to/your-project/
-python3 /path/to/your-project/scripts/verify_codebuddy_setup.py
-
-# TRAE
-cp -R trae/. /path/to/your-project/
-python3 /path/to/your-project/scripts/verify_trae_setup.py
-```
-
-> 复制到已有项目之前，应先检查目标项目已有规则文件并合并冲突内容，避免覆盖团队约定。
-
-### 3. 在 AI IDE 中确认加载
-
-| 工具 | 复制后检查事项 |
-| --- | --- |
-| Codex | 信任项目配置后检查 Agents、Skills、Hooks 与 `openaiDeveloperDocs` MCP |
-| Cursor | 检查 Rules、Agents、Skills、Hooks 面板；首次 MCP 加载前审阅审批提示 |
-| CodeBuddy | 检查 `CODEBUDDY.md`、Subagents、Skills、`/hooks` 与项目 MCP |
-| TRAE | 检查 `AGENTS.md` 与 Skills；按官方界面人工配置 MCP、智能体与沙箱 |
 
 ## 安全设计
 
