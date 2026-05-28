@@ -20,12 +20,44 @@
 
 ## 已支持工具
 
-| 模板 | 原生配置覆盖 | 已交付能力 | 运行时验收状态 |
-| --- | --- | --- | --- |
-| [`codex/`](codex/) | `AGENTS.md`、`.codex/`、`.agents/skills/` | 配置、7 个代理、8 个 Skills、MCP、Hooks、Rules | 支持离线验证与 MCP 配置读取 |
-| [`cursor/`](cursor/) | `AGENTS.md`、`.cursor/rules/`、`.cursor/agents/`、`.cursor/skills/` | 7 个 Agents、8 个 Skills、MCP、Hooks | Cursor CLI 可在复制后的独立项目发现 MCP，仍需用户审批加载 |
-| [`codebuddy/`](codebuddy/) | `CODEBUDDY.md`、`.codebuddy/settings.json`、`.codebuddy/agents/`、`.codebuddy/skills/`、`.mcp.json` | 7 个 Subagents、8 个 Skills、MCP、Hooks | 离线验证通过；需在桌面端确认加载 |
-| [`trae/`](trae/) | `AGENTS.md`、`.agents/skills/` | 七类职责协作规则、8 个 Skills | 离线验证通过；MCP、智能体与沙箱需在 IDE 内配置确认 |
+<div style="overflow-x:auto;">
+<table>
+  <thead>
+    <tr>
+      <th style="position: sticky; left: 0; z-index: 1; background: #fff; min-width: 128px;">模板</th>
+      <th style="min-width: 260px;">原生配置覆盖</th>
+      <th style="min-width: 260px;">已交付能力</th>
+      <th style="min-width: 280px;">运行时验收状态</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="position: sticky; left: 0; z-index: 1; background: #fff;"><a href="codex/"><code>codex/</code></a></td>
+      <td><code>AGENTS.md</code><br><code>.codex/config.toml</code><br><code>.codex/agents/*.toml</code><br><code>.codex/hooks.json</code><br><code>.codex/rules/safety.rules</code><br><code>.agents/skills/*</code></td>
+      <td>项目级 Codex 配置<br>7 个自定义代理<br>8 个流程 Skills<br>公开文档 MCP<br>密钥检测 Hooks<br>危险命令 Rules</td>
+      <td>离线验证通过<br>可读取 <code>openaiDeveloperDocs</code> MCP 配置<br>外部账号授权不作为离线验收条件</td>
+    </tr>
+    <tr>
+      <td style="position: sticky; left: 0; z-index: 1; background: #fff;"><a href="cursor/"><code>cursor/</code></a></td>
+      <td><code>AGENTS.md</code><br><code>.cursor/rules/*.mdc</code><br><code>.cursor/agents/*.md</code><br><code>.cursor/skills/*/SKILL.md</code><br><code>.cursor/mcp.json</code><br><code>.cursor/hooks.json</code></td>
+      <td>Cursor 项目规则<br>7 个项目 Agents<br>8 个项目 Skills<br>公开文档 MCP<br>提示、写入、Shell、MCP 安全 Hooks</td>
+      <td>离线验证通过<br>Cursor CLI 可在复制后的独立项目发现 MCP<br>MCP 加载仍需用户审批</td>
+    </tr>
+    <tr>
+      <td style="position: sticky; left: 0; z-index: 1; background: #fff;"><a href="codebuddy/"><code>codebuddy/</code></a></td>
+      <td><code>CODEBUDDY.md</code><br><code>.codebuddy/settings.json</code><br><code>.codebuddy/agents/*.md</code><br><code>.codebuddy/skills/*/SKILL.md</code><br><code>.codebuddy/hooks/guard_secrets.py</code><br><code>.mcp.json</code></td>
+      <td>CodeBuddy 项目说明<br>7 个 Subagents<br>8 个 Skills<br>项目 Settings 权限<br>公开文档 MCP<br>凭据与高风险动作 Hooks</td>
+      <td>离线验证通过<br>本机可发现桌面应用<br>无可调用 CLI，运行时加载需在 IDE 内确认</td>
+    </tr>
+    <tr>
+      <td style="position: sticky; left: 0; z-index: 1; background: #fff;"><a href="trae/"><code>trae/</code></a></td>
+      <td><code>AGENTS.md</code><br><code>.agents/skills/*/SKILL.md</code></td>
+      <td>TRAE 通用协作入口<br>七类职责说明<br>8 个 Agent Skills<br>非生产接入与人工验收指引</td>
+      <td>离线验证通过<br>不提交未确认的 <code>.trae/</code> 项目配置<br>MCP、智能体与沙箱需在 IDE 内配置确认</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 > TRAE 模板采取保守策略：仅提交当前已确认的项目资产，不创建缺少稳定官方文件规范的 `.trae/` 配置。
 
@@ -91,6 +123,67 @@ ai-ide-init-template/
 ```
 
 每个工具目录均为自包含模板。将某一个目录的**内容**复制到目标项目根目录后即可使用，不依赖本仓库其他模板目录。
+
+### 根目录文件
+
+| 路径 | 能力描述 |
+| --- | --- |
+| [`README.md`](README.md) | GitHub 项目首页，说明模板定位、能力矩阵、复制方式、安全边界和验证方法 |
+| [`LICENSE`](LICENSE) | MIT 开源协议 |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | 贡献规则，约束新增模板、官方依据、验证要求和秘密材料处理 |
+| [`SECURITY.md`](SECURITY.md) | 安全报告方式与模板安全基线 |
+| [`scripts/verify_all_templates.py`](scripts/verify_all_templates.py) | 聚合验证入口，依次运行四套模板的离线检查并报告本机工具可发现状态 |
+
+### `codex/` 模板
+
+| 路径 | 能力描述 |
+| --- | --- |
+| [`codex/AGENTS.md`](codex/AGENTS.md) | Codex 项目级中文总规则，定义协作、安全和外部服务边界 |
+| [`codex/.codex/config.toml`](codex/.codex/config.toml) | Codex 项目配置，设置沙箱、审批、多代理、Apps 和公开文档 MCP |
+| `codex/.codex/agents/*.toml` | 7 个 Codex 自定义代理，覆盖产品、体验、前端、后端、质量、运维和安全职责 |
+| [`codex/.codex/hooks.json`](codex/.codex/hooks.json) | Codex Hook 注册文件，接入提示和工具负载安全检查 |
+| [`codex/.codex/hooks/guard_secrets.py`](codex/.codex/hooks/guard_secrets.py) | 凭据检测脚本，阻止明显密钥、私钥、连接串和非占位秘密值 |
+| [`codex/.codex/rules/safety.rules`](codex/.codex/rules/safety.rules) | 危险命令规则，覆盖强制推送、发布、部署、基础设施和授权变更 |
+| `codex/.agents/skills/*/SKILL.md` | 8 个通用流程 Skills，从需求收敛到集成接入 |
+| `codex/.agents/skills/*/agents/openai.yaml` | Codex Skills 的中文界面元数据 |
+| [`codex/docs/Codex-初始化指南.md`](codex/docs/Codex-初始化指南.md) | Codex 模板复制、验证、MCP、Hooks、Rules 和外部集成指南 |
+| [`codex/scripts/verify_codex_setup.py`](codex/scripts/verify_codex_setup.py) | Codex 模板离线验证脚本 |
+
+### `cursor/` 模板
+
+| 路径 | 能力描述 |
+| --- | --- |
+| [`cursor/AGENTS.md`](cursor/AGENTS.md) | Cursor 项目中文总约束，定义协作职责与安全边界 |
+| `cursor/.cursor/rules/*.mdc` | Cursor 原生 Rules，覆盖协作、安全和外部集成规则 |
+| `cursor/.cursor/agents/*.md` | 7 个 Cursor 项目 Agents |
+| `cursor/.cursor/skills/*/SKILL.md` | 8 个 Cursor 项目 Skills |
+| [`cursor/.cursor/mcp.json`](cursor/.cursor/mcp.json) | Cursor 项目 MCP，仅声明公开 OpenAI 开发文档服务 |
+| [`cursor/.cursor/hooks.json`](cursor/.cursor/hooks.json) | Cursor 原生 Hook 注册，覆盖提示、写入、Shell 和 MCP 事件 |
+| [`cursor/.cursor/hooks/guard_secrets.py`](cursor/.cursor/hooks/guard_secrets.py) | Cursor 安全脚本，拦截明显凭据并对高风险动作要求审批 |
+| [`cursor/docs/Cursor-初始化指南.md`](cursor/docs/Cursor-初始化指南.md) | Cursor 模板复制、CLI 验证、Rules、Agents、Skills、Hooks 和 MCP 指南 |
+| [`cursor/scripts/verify_cursor_setup.py`](cursor/scripts/verify_cursor_setup.py) | Cursor 模板离线验证脚本，并在临时独立项目中检查 MCP 可发现性 |
+
+### `codebuddy/` 模板
+
+| 路径 | 能力描述 |
+| --- | --- |
+| [`codebuddy/CODEBUDDY.md`](codebuddy/CODEBUDDY.md) | CodeBuddy 项目自动读取的中文核心说明 |
+| [`codebuddy/.codebuddy/settings.json`](codebuddy/.codebuddy/settings.json) | CodeBuddy 项目共享配置，定义保守权限和 Hooks |
+| `codebuddy/.codebuddy/agents/*.md` | 7 个 CodeBuddy Subagents |
+| `codebuddy/.codebuddy/skills/*/SKILL.md` | 8 个 CodeBuddy Skills，含最小工具权限声明 |
+| [`codebuddy/.codebuddy/hooks/guard_secrets.py`](codebuddy/.codebuddy/hooks/guard_secrets.py) | CodeBuddy Hook 脚本，拦截提示和工具负载中的秘密值及高风险动作 |
+| [`codebuddy/.mcp.json`](codebuddy/.mcp.json) | CodeBuddy 项目 MCP，仅声明公开 OpenAI 开发文档服务 |
+| [`codebuddy/docs/CodeBuddy-初始化指南.md`](codebuddy/docs/CodeBuddy-初始化指南.md) | CodeBuddy Settings、Subagents、Skills、MCP、Hooks 和 IDE 人工验收指南 |
+| [`codebuddy/scripts/verify_codebuddy_setup.py`](codebuddy/scripts/verify_codebuddy_setup.py) | CodeBuddy 模板离线验证脚本 |
+
+### `trae/` 模板
+
+| 路径 | 能力描述 |
+| --- | --- |
+| [`trae/AGENTS.md`](trae/AGENTS.md) | TRAE 项目中文总约束，组织七类职责与高风险审批边界 |
+| `trae/.agents/skills/*/SKILL.md` | 8 个 TRAE Agent Skills，覆盖通用交付流程 |
+| [`trae/docs/TRAE-初始化指南.md`](trae/docs/TRAE-初始化指南.md) | TRAE Skills、MCP、自定义智能体、沙箱和人工验收指南 |
+| [`trae/scripts/verify_trae_setup.py`](trae/scripts/verify_trae_setup.py) | TRAE 保守模板离线验证脚本，确认未提交推测性 `.trae/` 配置 |
 
 ## 快速开始
 
