@@ -19,10 +19,9 @@
     .amber { fill: #783f04; stroke: #f59e0b; }
     .lime { fill: #21570a; stroke: #84cc16; }
     .gray { fill: #3f3f46; stroke: #a1a1aa; }
-    .outline { fill: transparent; stroke: #e5e7eb; stroke-width: 2; stroke-dasharray: 10 10; }
   </style>
 
-  <rect class="bg" width="1400" height="1820"/>
+  <rect class="bg" width="1400" height="1960"/>
   <text class="title" x="700" y="62" text-anchor="middle">AI IDE 初始化工具 · 能力配置全景地图</text>
   <text class="subtitle" x="700" y="102" text-anchor="middle">8 大维度 · 覆盖 Codex / Cursor / CodeBuddy / TRAE</text>
 
@@ -162,41 +161,38 @@
     <text class="card-text" x="474" y="295" text-anchor="middle">隐私 / 断网降级</text>
   </g>
 
-  <g transform="translate(60,1590)">
-    <rect class="outline" width="1280" height="64" rx="14"/>
-    <text class="note" x="640" y="42" text-anchor="middle">可继续扩展的 8 项补充能力</text>
+  <g transform="translate(60,1620)">
+    <rect class="box purple" x="0" y="0" width="300" height="96"/>
+    <text class="card-title" x="150" y="39" text-anchor="middle">Prompt 模板库</text>
+    <text class="card-text" x="150" y="73" text-anchor="middle">标准化输入范式</text>
 
-    <rect class="box purple" x="0" y="96" width="300" height="96"/>
-    <text class="card-title" x="150" y="135" text-anchor="middle">Prompt 模板库</text>
-    <text class="card-text" x="150" y="169" text-anchor="middle">标准化输入范式</text>
+    <rect class="box green" x="326" y="0" width="300" height="96"/>
+    <text class="card-title" x="476" y="39" text-anchor="middle">TDD / 测试生成</text>
+    <text class="card-text" x="476" y="73" text-anchor="middle">单测 / 覆盖率追踪</text>
 
-    <rect class="box green" x="326" y="96" width="300" height="96"/>
-    <text class="card-title" x="476" y="135" text-anchor="middle">TDD / 测试生成</text>
-    <text class="card-text" x="476" y="169" text-anchor="middle">单测 / 覆盖率追踪</text>
+    <rect class="box brown" x="652" y="0" width="300" height="96"/>
+    <text class="card-title" x="802" y="39" text-anchor="middle">性能分析与重构</text>
+    <text class="card-text" x="802" y="73" text-anchor="middle">复杂度 / 热点定位</text>
 
-    <rect class="box brown" x="652" y="96" width="300" height="96"/>
-    <text class="card-title" x="802" y="135" text-anchor="middle">性能分析与重构</text>
-    <text class="card-text" x="802" y="169" text-anchor="middle">复杂度 / 热点定位</text>
+    <rect class="box blue" x="978" y="0" width="300" height="96"/>
+    <text class="card-title" x="1128" y="39" text-anchor="middle">多语言 / i18n 支持</text>
+    <text class="card-text" x="1128" y="73" text-anchor="middle">本地化 / 时区处理</text>
 
-    <rect class="box blue" x="978" y="96" width="300" height="96"/>
-    <text class="card-title" x="1128" y="135" text-anchor="middle">多语言 / i18n 支持</text>
-    <text class="card-text" x="1128" y="169" text-anchor="middle">本地化 / 时区处理</text>
+    <rect class="box red" x="0" y="120" width="300" height="96"/>
+    <text class="card-title" x="150" y="159" text-anchor="middle">文档自动生成</text>
+    <text class="card-text" x="150" y="193" text-anchor="middle">README / API doc</text>
 
-    <rect class="box red" x="0" y="216" width="300" height="96"/>
-    <text class="card-title" x="150" y="255" text-anchor="middle">文档自动生成</text>
-    <text class="card-text" x="150" y="289" text-anchor="middle">README / API doc</text>
+    <rect class="box amber" x="326" y="120" width="300" height="96"/>
+    <text class="card-title" x="476" y="159" text-anchor="middle">依赖漏洞扫描</text>
+    <text class="card-text" x="476" y="193" text-anchor="middle">SCA / CVE 检测</text>
 
-    <rect class="box amber" x="326" y="216" width="300" height="96"/>
-    <text class="card-title" x="476" y="255" text-anchor="middle">依赖漏洞扫描</text>
-    <text class="card-text" x="476" y="289" text-anchor="middle">SCA / CVE 检测</text>
+    <rect class="box lime" x="652" y="120" width="300" height="96"/>
+    <text class="card-title" x="802" y="159" text-anchor="middle">CI/CD 深度集成</text>
+    <text class="card-text" x="802" y="193" text-anchor="middle">流水线感知 / 修复</text>
 
-    <rect class="box lime" x="652" y="216" width="300" height="96"/>
-    <text class="card-title" x="802" y="255" text-anchor="middle">CI/CD 深度集成</text>
-    <text class="card-text" x="802" y="289" text-anchor="middle">流水线感知 / 修复</text>
-
-    <rect class="box gray" x="978" y="216" width="300" height="96"/>
-    <text class="card-title" x="1128" y="255" text-anchor="middle">Monorepo 感知</text>
-    <text class="card-text" x="1128" y="289" text-anchor="middle">跨包依赖 / 影响分析</text>
+    <rect class="box gray" x="978" y="120" width="300" height="96"/>
+    <text class="card-title" x="1128" y="159" text-anchor="middle">Monorepo 感知</text>
+    <text class="card-text" x="1128" y="193" text-anchor="middle">跨包依赖 / 影响分析</text>
   </g>
 
   <text class="small" x="700" y="1900" text-anchor="middle">本图为模板能力全景，具体落地以各工具原生配置、非生产验证和用户明确授权为边界。</text>
