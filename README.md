@@ -125,8 +125,6 @@ python3 scripts/install_template.py --tool codebuddy --mode installer-skill --ta
 
 ![AI IDE 初始化工具能力配置全景地图](docs/assets/ai-ide-capability-map-v2.svg)
 
-原始参考文档已保留在 [`docs/reference/codex-global-config.md`](docs/reference/codex-global-config.md)。该文档是一份未完全完成的能力草案，本仓库已将其中适合项目模板化的内容整理为可复制、可验证、无凭据的四套 AI IDE 初始化模板。
-
 ## 已支持工具
 
 <div style="overflow-x:auto;">
@@ -232,11 +230,9 @@ ai-ide-init-template/
 ├── LICENSE                           # MIT 开源协议
 ├── CONTRIBUTING.md                   # 贡献规则：新增模板、官方依据、验证和安全要求
 ├── SECURITY.md                       # 安全策略：漏洞报告、凭据处理和高风险边界
-├── docs/                             # 根级资料：能力地图和原始参考文档
+├── docs/                             # 根级资料：能力地图
 │   ├── assets/
 │   │   └── ai-ide-capability-map-v2.svg # README 展示的能力配置全景地图
-│   └── reference/
-│       └── codex-global-config.md    # 用户提供的原始能力配置参考文档
 ├── skills/
 │   └── ai-ide-init-template/          # 跨工具安装型 Skill，可在 IDE 内触发模板安装
 ├── scripts/
@@ -308,7 +304,6 @@ ai-ide-init-template/
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | 贡献规则，约束新增模板、官方依据、验证要求和秘密材料处理 |
 | [`SECURITY.md`](SECURITY.md) | 安全报告方式与模板安全基线 |
 | [`docs/assets/ai-ide-capability-map-v2.svg`](docs/assets/ai-ide-capability-map-v2.svg) | README 中展示的 AI IDE 能力配置全景地图 |
-| [`docs/reference/codex-global-config.md`](docs/reference/codex-global-config.md) | 用户提供的原始能力配置参考文档，作为模板完善依据保留 |
 | [`scripts/verify_all_templates.py`](scripts/verify_all_templates.py) | 聚合验证入口，依次运行四套模板的离线检查并报告本机工具可发现状态 |
 
 ### `codex/` 模板
