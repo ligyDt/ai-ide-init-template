@@ -173,12 +173,44 @@ python3 scripts/install_template.py --tool codebuddy --mode installer-skill --ta
 
 ### 产品与模式边界
 
-| 产品/模式 | 当前模板 | 承载内容 | 使用边界 |
-| --- | --- | --- | --- |
-| TRAE IDE | `trae/` | `AGENTS.md`、`.trae/rules/`、`.trae/commands/`、`.trae/skills/`、`.agents/skills/`、IDE 内 MCP/自定义智能体/沙箱设置 | 日常编码、项目规则、项目命令、技能调用和非生产集成验证；不把 SOLO 计划文档当成 IDE 规则或命令 |
-| TRAE SOLO | `trae/` | `/spec`、`/plan`、`.trae/specs/`、`.trae/documents/` 生成的工作流文档 | 复杂任务规划、中小型计划执行、任务列表和验收清单沉淀；这些目录是 SOLO 产物落点，不是 Rules、Commands、MCP 或沙箱配置 |
-| CodeBuddy IDE | `codebuddy/` | `.codebuddy/rules/`、`.codebuddy/commands/`、`.codebuddy/models.json`、`.codebuddy/plans/`、Subagents、Skills、Hooks、项目 MCP | IDE 项目级研发配置；不写真实模型密钥，不混入 WorkBuddy 工作空间或远程控制配置 |
-| WorkBuddy | 暂未提供模板 | <span style="display:inline-block; max-width: 520px; white-space: normal; word-break: break-word;">WorkBuddy 的官方高效使用建议可作为人工操作清单，而不是仓库配置：下任务时说清“做什么、有什么、要怎样输出”，大任务拆成小步骤，多轮调整，不满意就补充约束；处理真实文件前先备份并优先在本地桌面端验证，远程控制和自动化只用于规则明确、可回退、无需实时人工干预的任务。</span> | 当前仅记录边界：WorkBuddy 是桌面工作台，面向工作空间、任务管理、产物、权限模式、Claw 远程控制和插件系统，不假设复用 `.codebuddy/` |
+<div style="overflow-x:auto;">
+<table>
+  <thead>
+    <tr>
+      <th style="min-width: 140px;">产品/模式</th>
+      <th style="min-width: 140px;">当前模板</th>
+      <th style="min-width: 260px; max-width: 520px;">承载内容</th>
+      <th style="min-width: 320px;">使用边界</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TRAE IDE</td>
+      <td><code>trae/</code></td>
+      <td style="max-width: 520px; white-space: normal; word-break: break-word;"><code>AGENTS.md</code>、<code>.trae/rules/</code>、<code>.trae/commands/</code>、<code>.trae/skills/</code>、<code>.agents/skills/</code>、IDE 内 MCP/自定义智能体/沙箱设置</td>
+      <td>日常编码、项目规则、项目命令、技能调用和非生产集成验证；不把 SOLO 计划文档当成 IDE 规则或命令</td>
+    </tr>
+    <tr>
+      <td>TRAE SOLO</td>
+      <td><code>trae/</code></td>
+      <td style="max-width: 520px; white-space: normal; word-break: break-word;"><code>/spec</code>、<code>/plan</code>、<code>.trae/specs/</code>、<code>.trae/documents/</code> 生成的工作流文档</td>
+      <td>复杂任务规划、中小型计划执行、任务列表和验收清单沉淀；这些目录是 SOLO 产物落点，不是 Rules、Commands、MCP 或沙箱配置</td>
+    </tr>
+    <tr>
+      <td>CodeBuddy IDE</td>
+      <td><code>codebuddy/</code></td>
+      <td style="max-width: 520px; white-space: normal; word-break: break-word;"><code>.codebuddy/rules/</code>、<code>.codebuddy/commands/</code>、<code>.codebuddy/models.json</code>、<code>.codebuddy/plans/</code>、Subagents、Skills、Hooks、项目 MCP</td>
+      <td>IDE 项目级研发配置；不写真实模型密钥，不混入 WorkBuddy 工作空间或远程控制配置</td>
+    </tr>
+    <tr>
+      <td>WorkBuddy</td>
+      <td>暂未提供模板</td>
+      <td style="max-width: 520px; white-space: normal; word-break: break-word;">WorkBuddy 的官方高效使用建议可作为人工操作清单，而不是仓库配置：下任务时说清“做什么、有什么、要怎样输出”，大任务拆成小步骤，多轮调整，不满意就补充约束；处理真实文件前先备份并优先在本地桌面端验证，远程控制和自动化只用于规则明确、可回退、无需实时人工干预的任务。</td>
+      <td>当前仅记录边界：WorkBuddy 是桌面工作台，面向工作空间、任务管理、产物、权限模式、Claw 远程控制和插件系统，不假设复用 <code>.codebuddy/</code></td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 ## 核心能力
 
