@@ -131,9 +131,8 @@ python3 scripts/install_template.py --tool codebuddy --mode installer-skill --ta
 <table>
   <thead>
     <tr>
-      <th style="position: sticky; left: 0; z-index: 1; background: #fff; min-width: 128px;">模板</th>
-      <th style="min-width: 180px;">IDE / 厂商</th>
-      <th style="min-width: 180px;">官网</th>
+      <th style="position: sticky; left: 0; z-index: 1; background: #fff; min-width: 180px;">IDE / 厂商</th>
+      <th style="min-width: 128px;">模板</th>
       <th style="min-width: 260px;">原生配置覆盖</th>
       <th style="min-width: 260px;">已交付能力</th>
       <th style="min-width: 280px;">运行时验收状态</th>
@@ -141,33 +140,29 @@ python3 scripts/install_template.py --tool codebuddy --mode installer-skill --ta
   </thead>
   <tbody>
     <tr>
-      <td style="position: sticky; left: 0; z-index: 1; background: #fff;"><a href="codex/"><code>codex/</code></a></td>
-      <td><img src="https://www.google.com/s2/favicons?sz=64&domain_url=https://openai.com" width="24" height="24" alt="OpenAI Codex 图标"><br><strong>OpenAI Codex</strong><br>OpenAI</td>
-      <td><a href="https://openai.com/codex/">openai.com/codex</a><br><a href="https://developers.openai.com/codex">开发者文档</a></td>
+      <td style="position: sticky; left: 0; z-index: 1; background: #fff;"><img src="https://www.google.com/s2/favicons?sz=64&domain_url=https://openai.com" width="24" height="24" alt="OpenAI Codex 图标"><br><strong>OpenAI Codex</strong><br><a href="https://openai.com/codex/">OpenAI</a></td>
+      <td><a href="codex/"><code>codex/</code></a></td>
       <td><code>AGENTS.md</code><br><code>.codex/config.toml</code><br><code>.codex/agents/*.toml</code><br><code>.codex/hooks.json</code><br><code>.codex/rules/safety.rules</code><br><code>.agents/skills/*</code></td>
       <td>项目级 Codex 配置<br>7 个自定义代理<br>8 个流程 Skills<br>8 个补充能力 Skills<br>上下文/记忆/错误免疫模板<br>公开文档 MCP<br>密钥检测 Hooks<br>危险命令 Rules</td>
       <td>离线验证通过<br>可读取 <code>openaiDeveloperDocs</code> MCP 配置<br>外部账号授权不作为离线验收条件</td>
     </tr>
     <tr>
-      <td style="position: sticky; left: 0; z-index: 1; background: #fff;"><a href="cursor/"><code>cursor/</code></a></td>
-      <td><img src="https://www.google.com/s2/favicons?sz=64&domain_url=https://www.cursor.com" width="24" height="24" alt="Cursor 图标"><br><strong>Cursor</strong><br>Anysphere</td>
-      <td><a href="https://www.cursor.com/">cursor.com</a><br><a href="https://docs.cursor.com/">官方文档</a></td>
+      <td style="position: sticky; left: 0; z-index: 1; background: #fff;"><img src="https://www.google.com/s2/favicons?sz=64&domain_url=https://www.cursor.com" width="24" height="24" alt="Cursor 图标"><br><strong>Cursor</strong><br><a href="https://www.cursor.com/">Anysphere</a></td>
+      <td><a href="cursor/"><code>cursor/</code></a></td>
       <td><code>AGENTS.md</code><br><code>.cursor/rules/*.mdc</code><br><code>.cursor/agents/*.md</code><br><code>.cursor/skills/*/SKILL.md</code><br><code>.cursor/mcp.json</code><br><code>.cursor/hooks.json</code></td>
       <td>Cursor 项目规则<br>7 个项目 Agents<br>8 个流程 Skills<br>8 个补充能力 Skills<br>上下文/记忆/错误免疫模板<br>公开文档 MCP<br>提示、写入、Shell、MCP 安全 Hooks</td>
       <td>离线验证通过<br>Cursor CLI 可在复制后的独立项目发现 MCP<br>MCP 加载仍需用户审批</td>
     </tr>
     <tr>
-      <td style="position: sticky; left: 0; z-index: 1; background: #fff;"><a href="codebuddy/"><code>codebuddy/</code></a></td>
-      <td><img src="https://www.google.com/s2/favicons?sz=64&domain_url=https://www.codebuddy.cn" width="24" height="24" alt="CodeBuddy 图标"><br><strong>CodeBuddy</strong><br>腾讯云</td>
-      <td><a href="https://www.codebuddy.cn/">codebuddy.cn</a><br><a href="https://www.codebuddy.cn/docs/">官方文档</a></td>
+      <td style="position: sticky; left: 0; z-index: 1; background: #fff;"><img src="https://www.google.com/s2/favicons?sz=64&domain_url=https://www.codebuddy.cn" width="24" height="24" alt="CodeBuddy 图标"><br><strong>CodeBuddy</strong><br><a href="https://www.codebuddy.cn/">腾讯云</a></td>
+      <td><a href="codebuddy/"><code>codebuddy/</code></a></td>
       <td><code>CODEBUDDY.md</code><br><code>.codebuddy/settings.json</code><br><code>.codebuddy/rules/*/RULE.mdc</code><br><code>.codebuddy/commands/*.md</code><br><code>.codebuddy/models.json</code><br><code>.codebuddy/plans/</code><br><code>.codebuddy/agents/*.md</code><br><code>.codebuddy/skills/*/SKILL.md</code><br><code>.codebuddy/hooks/*.py</code><br><code>.mcp.json</code></td>
       <td>CodeBuddy 项目说明<br>CodeBuddy 原生项目 Rules<br>CodeBuddy 自定义 Commands<br>Plan Mode 文档落点<br>项目级模型显示控制<br>7 个 Subagents<br>8 个流程 Skills<br>8 个补充能力 Skills<br>上下文/记忆/错误免疫模板<br>项目 Settings 权限<br>公开文档 MCP<br>上下文注入、凭据与高风险动作 Hooks</td>
       <td>离线验证通过<br>本机可发现桌面应用<br>无可调用 CLI，运行时加载需在 IDE 内确认</td>
     </tr>
     <tr>
-      <td style="position: sticky; left: 0; z-index: 1; background: #fff;"><a href="trae/"><code>trae/</code></a></td>
-      <td><img src="https://www.google.com/s2/favicons?sz=64&domain_url=https://www.trae.cn" width="24" height="24" alt="TRAE 图标"><br><strong>TRAE</strong><br>字节跳动</td>
-      <td><a href="https://www.trae.cn/">trae.cn</a><br><a href="https://docs.trae.cn/">官方文档</a></td>
+      <td style="position: sticky; left: 0; z-index: 1; background: #fff;"><img src="https://www.google.com/s2/favicons?sz=64&domain_url=https://www.trae.cn" width="24" height="24" alt="TRAE 图标"><br><strong>TRAE</strong><br><a href="https://www.trae.cn/">字节跳动</a></td>
+      <td><a href="trae/"><code>trae/</code></a></td>
       <td><code>AGENTS.md</code><br><code>.trae/rules/*.md</code><br><code>.trae/commands/*.md</code><br><code>.trae/skills/*/SKILL.md</code><br><code>.trae/specs/</code><br><code>.trae/documents/</code><br><code>.agents/skills/*/SKILL.md</code></td>
       <td>TRAE 通用协作入口<br>TRAE 原生项目规则<br>TRAE 原生项目命令<br>TRAE 原生工作流 Skill<br>Spec/Plan 文档落点<br>8 个流程 Skills<br>8 个补充能力 Skills<br>上下文/记忆/错误免疫模板<br>非生产接入与人工验收指引</td>
       <td>离线验证通过<br>已提交官方确认的 Rules、Commands、Skills 与 Spec/Plan 目录<br>MCP、智能体、Hook 与沙箱需在 IDE 内配置确认</td>
@@ -176,8 +171,6 @@ python3 scripts/install_template.py --tool codebuddy --mode installer-skill --ta
 </table>
 </div>
 
-> TRAE 模板已补充官方确认的 `.trae/rules/`、`.trae/commands/`、`.trae/skills/`、`.trae/specs/` 与 `.trae/documents/`；仍不提交缺少稳定仓库格式或需要本机授权的 MCP、智能体、Hook、沙箱运行时配置。
-
 ### 产品与模式边界
 
 | 产品/模式 | 当前模板 | 承载内容 | 使用边界 |
@@ -185,9 +178,7 @@ python3 scripts/install_template.py --tool codebuddy --mode installer-skill --ta
 | TRAE IDE | `trae/` | `AGENTS.md`、`.trae/rules/`、`.trae/commands/`、`.trae/skills/`、`.agents/skills/`、IDE 内 MCP/自定义智能体/沙箱设置 | 日常编码、项目规则、项目命令、技能调用和非生产集成验证；不把 SOLO 计划文档当成 IDE 规则或命令 |
 | TRAE SOLO | `trae/` | `/spec`、`/plan`、`.trae/specs/`、`.trae/documents/` 生成的工作流文档 | 复杂任务规划、中小型计划执行、任务列表和验收清单沉淀；这些目录是 SOLO 产物落点，不是 Rules、Commands、MCP 或沙箱配置 |
 | CodeBuddy IDE | `codebuddy/` | `.codebuddy/rules/`、`.codebuddy/commands/`、`.codebuddy/models.json`、`.codebuddy/plans/`、Subagents、Skills、Hooks、项目 MCP | IDE 项目级研发配置；不写真实模型密钥，不混入 WorkBuddy 工作空间或远程控制配置 |
-| WorkBuddy | 暂未提供模板 | 待官方确认项目级仓库配置格式 | 当前仅记录边界：WorkBuddy 是桌面工作台，面向工作空间、任务管理、产物、权限模式、Claw 远程控制和插件系统，不假设复用 `.codebuddy/` |
-
-> WorkBuddy 的官方高效使用建议可作为人工操作清单，而不是仓库配置：下任务时说清“做什么、有什么、要怎样输出”，大任务拆成小步骤，多轮调整，不满意就补充约束；处理真实文件前先备份并优先在本地桌面端验证，远程控制和自动化只用于规则明确、可回退、无需实时人工干预的任务。
+| WorkBuddy | 暂未提供模板 | <span style="display:inline-block; max-width: 520px; white-space: normal; word-break: break-word;">WorkBuddy 的官方高效使用建议可作为人工操作清单，而不是仓库配置：下任务时说清“做什么、有什么、要怎样输出”，大任务拆成小步骤，多轮调整，不满意就补充约束；处理真实文件前先备份并优先在本地桌面端验证，远程控制和自动化只用于规则明确、可回退、无需实时人工干预的任务。</span> | 当前仅记录边界：WorkBuddy 是桌面工作台，面向工作空间、任务管理、产物、权限模式、Claw 远程控制和插件系统，不假设复用 `.codebuddy/` |
 
 ## 核心能力
 
