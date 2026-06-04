@@ -117,6 +117,16 @@ def validate_content() -> None:
             fail(f"中文内容不足：{path.relative_to(ROOT)}")
         if any(term in value for term in forbidden):
             fail(f"存在业务专属残留：{path.relative_to(ROOT)}")
+    guide = read(ROOT / "docs/Cursor-初始化指南.md")
+    for marker in (
+        "https://docs.cursor.com/context/rules",
+        "https://docs.cursor.com/context/model-context-protocol",
+        "https://www.cursor.com/changelog/2-4",
+        "模板安全扩展和本机验证",
+        "../../docs/reference/official-sources.md",
+    ):
+        if marker not in guide:
+            fail(f"Cursor 指南缺少官方来源或能力边界说明：{marker}")
 
 
 def main() -> int:

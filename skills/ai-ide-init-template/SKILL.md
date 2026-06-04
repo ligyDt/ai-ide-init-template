@@ -58,7 +58,7 @@ python3 <skill-path>/scripts/install_template.py --from-git --tool <codex|cursor
   - Codex：`.agents/skills/`
   - Cursor：`.cursor/skills/`
   - CodeBuddy：`.codebuddy/skills/`
-  - TRAE：`.agents/skills/`
+  - TRAE：`.agents/skills/`，并在 TRAE 设置中启用 `.agents` 技能目录；完整模板还会安装 `.trae/rules/`、`.trae/commands/`、`.trae/skills/` 与 Spec/Plan 目录。
 - 对外部账号授权、生产访问、支付、部署、远程写入和真实数据处理保持未启用状态，必须在目标项目内另行审批。
 
 ## 输出

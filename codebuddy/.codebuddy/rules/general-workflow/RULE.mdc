@@ -1,0 +1,14 @@
+---
+description: CodeBuddy 项目通用协作、上下文读取和 Plan/Craft 模式选择规则。
+alwaysApply: true
+enabled: true
+---
+
+# 通用协作规则
+
+- 开始任务前先读取 `CODEBUDDY.md`、`.codebuddy/project-context.md`、`.codebuddy/rules.md`、`.codebuddy/memory.md` 与 `.codebuddy/errors.md`。
+- 新需求先明确目标用户、输入输出、范围边界、风险和验收标准；需求不清晰时优先使用 `product-intake`。
+- 复杂功能、架构设计、多文件协同、UI/UX 设计、存量项目改造和复杂任务拆解，优先进入 Plan Mode，先审阅方案再执行。
+- 快速 Bug 修复、单文件局部调整、代码解释和小范围优化可使用 Craft Mode 直接执行。
+- 涉及多角色、多模块或跨阶段交付时，先使用 `delivery-orchestration` 拆分阶段、职责、依赖和交接物。
+- 所有面向人的沟通、说明、交付总结和项目 Markdown 默认使用中文；代码标识、命令和协议字段保持原文。

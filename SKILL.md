@@ -2,7 +2,7 @@
 name: ai-ide-init-template
 description: |
   AI IDE 项目初始化模板安装器。把 Codex、Cursor、CodeBuddy 或 TRAE 的项目级初始化能力安装到目标项目：
-  项目上下文、角色分工、流程 Skills、安全边界、MCP 基线、Hooks、Rules 和离线验证脚本。
+  项目上下文、角色分工、流程 Skills、安全边界、MCP 基线、Hooks、Rules、TRAE Commands 和离线验证脚本。
   当用户说「安装 AI IDE 初始化模板」「给项目接入 Codex/Cursor/CodeBuddy/TRAE 初始化能力」
   「只安装这些 Skills」「把这个模板装到项目里」「初始化 AI IDE 项目治理」时使用。
 allowed-tools: Read, Grep, Glob, Bash
@@ -19,7 +19,7 @@ allowed-tools: Read, Grep, Glob, Bash
 1. 目标工具：`codex`、`cursor`、`codebuddy` 或 `trae`。
 2. 目标目录：要安装到哪个项目根目录。
 3. 安装模式：
-   - `full`：完整项目基线，包含规则、Agents、Skills、Hooks、MCP 和验证脚本。
+   - `full`：完整项目基线，包含规则、Agents、Skills、Hooks、MCP、TRAE Commands 和验证脚本。
    - `skills`：只安装 16 个流程与补充能力 Skills。
    - `installer-skill`：只安装项目内可继续调用的安装型 Skill。
 
@@ -58,7 +58,7 @@ python3 scripts/install_template.py --tool <codex|cursor|codebuddy|trae> --mode 
 - 不保存、不生成、不复制真实访问令牌、密码、Cookie、私钥、生产资源标识或真实连接串。
 - 不默认启用外部账号授权、支付、部署、生产访问、远程写入或真实数据处理。
 - 完整安装后，运行目标项目内的 `scripts/verify_<tool>_setup.py`。
-- 安装完成后，提醒用户在对应 IDE 中确认规则、Agents、Skills、Hooks 和 MCP 是否加载。
+- 安装完成后，提醒用户在对应 IDE 中确认规则、Agents、Skills、Hooks、MCP 和 TRAE Commands 是否加载。
 
 ## 输出格式
 

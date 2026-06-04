@@ -185,6 +185,27 @@ def validate_chinese_and_generic_scope() -> None:
         for term in forbidden:
             if term in value:
                 fail(f"通用模板中仍包含专用领域措辞：{path.relative_to(ROOT)}")
+    agents_doc = text(ROOT / "AGENTS.md")
+    for marker in ("~/.codex/AGENTS.md", "AGENTS.override.md", "项目级 `AGENTS.md`"):
+        if marker not in agents_doc:
+            fail(f"AGENTS.md 缺少自定义指令边界说明：{marker}")
+    guide = text(GUIDE)
+    for marker in (
+        "AGENTS.md 自定义指令边界",
+        "project_doc_fallback_filenames",
+        "project_doc_max_bytes",
+        "Show which instruction files are active",
+        "https://developers.openai.com/codex/guides/agents-md",
+        "https://developers.openai.com/codex/config-reference",
+        "https://developers.openai.com/codex/subagents",
+        "https://developers.openai.com/codex/skills",
+        "https://developers.openai.com/codex/hooks",
+        "https://developers.openai.com/codex/rules",
+        "https://developers.openai.com/codex/mcp",
+        "../../docs/reference/official-sources.md",
+    ):
+        if marker not in guide:
+            fail(f"Codex 指南缺少 AGENTS.md 官方机制说明：{marker}")
 
 
 def validate_guard() -> None:

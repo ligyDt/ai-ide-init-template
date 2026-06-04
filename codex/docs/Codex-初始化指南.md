@@ -110,6 +110,43 @@ codex mcp get openaiDeveloperDocs
 | 协同与沟通层 | `delivery-orchestration`、代理交接物 | 明确多代理分工、同步点、合并方式和人工介入条件。 |
 | 平台与可观测层 | `release-readiness`、`cicd-integration`、`performance-analysis` | 管理 CI/CD、成本、Token、延迟、质量、监控、降级和回滚。 |
 
+### 3.4 AGENTS.md 自定义指令边界
+
+Codex 的 `AGENTS.md` 适合放“长期、可复用、对代码工作有约束力”的自然语言指导，例如协作方式、项目启动检查、测试命令、代码风格、安全边界、PR 说明、目录职责和子目录特例。它不能替代配置文件、Hook、Rules、MCP 或 Skills：需要机械拦截的动作放到 Hooks/Rules，需要工具连接的能力放到 MCP/插件/连接器，需要可复用流程和脚本的能力放到 Skills。
+
+官方发现顺序如下：
+
+1. 全局层：Codex home 默认为 `~/.codex`，优先读取 `AGENTS.override.md`，否则读取 `AGENTS.md`；同一层只使用第一个非空文件。
+2. 项目层：从项目根目录一路走到当前工作目录，每个目录依次检查 `AGENTS.override.md`、`AGENTS.md`，再检查 `project_doc_fallback_filenames` 中声明的备用文件名；每个目录最多加载一个文件。
+3. 合并顺序：从全局到项目根、再到当前目录拼接，越靠近当前目录的文件越靠后，因此能覆盖更宽泛的指导。
+
+默认总大小上限为 `project_doc_max_bytes = 32768` 字节。当前模板的 `codex/AGENTS.md` 约 4 KiB，适合保留为项目入口；更详细的背景、记忆、规则和错误免疫内容已拆到 `.codex/project-context.md`、`.codex/memory.md`、`.codex/rules.md` 和 `.codex/errors.md`，避免把所有内容堆进一个文件。
+
+建议这样定义：
+
+| 需求 | 放置位置 | 示例 |
+| --- | --- | --- |
+| 个人跨仓库偏好 | `~/.codex/AGENTS.md` | “默认中文沟通”“不要擅自新增生产依赖”“前端改动后截图验证” |
+| 临时全局覆盖 | `~/.codex/AGENTS.override.md` | “今天所有仓库只做审查，不写文件”；用完删除 |
+| 仓库通用约束 | 项目根 `AGENTS.md` | 技术栈、测试命令、安全边界、提交与 PR 要求 |
+| 子系统特例 | 子目录 `AGENTS.md` 或 `AGENTS.override.md` | `services/payments/` 的支付安全、专用测试命令 |
+| 既有团队文档复用 | `project_doc_fallback_filenames` | 将 `TEAM_GUIDE.md`、`.agents.md` 加入 Codex 配置 |
+
+可使用以下命令建立个人全局指导：
+
+```bash
+mkdir -p ~/.codex
+$EDITOR ~/.codex/AGENTS.md
+codex --ask-for-approval never "Summarize the current instructions."
+```
+
+个人全局文件不要纳入项目模板；项目模板只提交随仓库共享的 `AGENTS.md`。如果需要核对加载链，可以在仓库根目录运行：
+
+```bash
+codex --ask-for-approval never "Show which instruction files are active."
+codex --cd services/payments --ask-for-approval never "Show which instruction files are active."
+```
+
 ## 4. 七个角色代理
 
 项目代理位于 `.codex/agents/`。代理继承父会话模型和已批准能力；模板不固定模型或服务等级。
@@ -297,6 +334,8 @@ codex mcp get openaiDeveloperDocs
 | 现象 | 处理方式 |
 | --- | --- |
 | 项目级配置未加载 | 确认项目已标记为可信，并从项目根目录重新启动 Codex |
+| AGENTS.md 未加载 | 确认文件非空、Codex 从目标仓库根目录或子目录启动，并检查是否存在更高优先级的 `AGENTS.override.md` |
+| 指令被截断 | 精简 `AGENTS.md`，将细节拆到子目录文件，或在 Codex 配置中调高 `project_doc_max_bytes` |
 | skill 未显示 | 检查目录为 `.agents/skills/<name>/SKILL.md` 并运行 skill 校验 |
 | 安全钩子拦截测试文本 | 使用环境变量或脱敏占位符；测试疑似秘密时在运行时生成输入 |
 | 外部插件未显示 | 在本机安装或启用相应插件后重新检查；模板本身仍可验收 |
@@ -315,10 +354,13 @@ codex mcp get openaiDeveloperDocs
 
 ## 11. 官方参考
 
+- [Codex AGENTS.md 自定义指令](https://developers.openai.com/codex/guides/agents-md)
 - [Codex 配置参考](https://developers.openai.com/codex/config-reference)
-- [Codex 自定义代理](https://developers.openai.com/codex/subagents#custom-agents)
+- [Codex Subagents](https://developers.openai.com/codex/subagents)
 - [Codex Skills](https://developers.openai.com/codex/skills)
-- [Codex Hooks](https://developers.openai.com/codex/hooks#config-shape)
+- [Codex Hooks](https://developers.openai.com/codex/hooks)
 - [Codex Rules](https://developers.openai.com/codex/rules)
+- [Codex MCP](https://developers.openai.com/codex/mcp)
+- [根级官方来源矩阵](../../docs/reference/official-sources.md)
 
 本指南是项目模板的一部分。新增代理、skill、外部能力或安全策略时，应同步更新指南和离线验收脚本。

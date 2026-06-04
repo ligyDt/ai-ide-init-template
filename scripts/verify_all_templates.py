@@ -21,6 +21,8 @@ INSTALLER_SKILL = ROOT / "skills/ai-ide-init-template/SKILL.md"
 INSTALLER_SKILL_SCRIPT = ROOT / "skills/ai-ide-init-template/scripts/install_template.py"
 INSTALLER_SCRIPT = ROOT / "scripts/install_template.py"
 ROOT_SKILL = ROOT / "SKILL.md"
+README = ROOT / "README.md"
+OFFICIAL_SOURCES = ROOT / "docs/reference/official-sources.md"
 
 
 def run(name: str, script: Path) -> bool:
@@ -148,11 +150,60 @@ def validate_installer() -> bool:
     return passed
 
 
+def validate_official_sources() -> bool:
+    passed = True
+    required_files = (README, OFFICIAL_SOURCES)
+    for path in required_files:
+        if not path.is_file():
+            print(f"[失败] 官方来源：缺少 {path.relative_to(ROOT)}")
+            passed = False
+    if not passed:
+        return False
+    combined = "\n".join(path.read_text(encoding="utf-8") for path in required_files)
+    required_markers = (
+        "https://developers.openai.com/codex/guides/agents-md",
+        "https://developers.openai.com/codex/config-reference",
+        "https://developers.openai.com/codex/subagents",
+        "https://developers.openai.com/codex/skills",
+        "https://developers.openai.com/codex/hooks",
+        "https://developers.openai.com/codex/rules",
+        "https://developers.openai.com/codex/mcp",
+        "https://docs.cursor.com/context/rules",
+        "https://docs.cursor.com/context/model-context-protocol",
+        "https://www.cursor.com/changelog/2-4",
+        "https://www.codebuddy.cn/docs/cli/codebuddy-dir",
+        "https://www.codebuddy.cn/docs/ide/Rules",
+        "https://www.codebuddy.cn/docs/ide/User-guide/Slash-Commands",
+        "https://www.codebuddy.cn/docs/ide/Features/models",
+        "https://www.codebuddy.cn/docs/ide/Features/Plan-Mode",
+        "https://www.codebuddy.cn/docs/ide/Features/Subagents",
+        "https://www.codebuddy.cn/docs/ide/Features/Skills",
+        "https://www.codebuddy.cn/docs/ide/Features/Hooks",
+        "https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Efficient-Tips",
+        "https://docs.trae.cn/ide/skills",
+        "https://docs.trae.cn/ide/rules",
+        "https://docs.trae.cn/ide/slash-commands",
+        "https://docs.trae.cn/solo/spec-and-plan",
+        "https://docs.trae.cn/ide/model-context-protocol",
+        "https://docs.trae.cn/ide/agent",
+        "Cursor Hooks 当前按模板安全扩展和本机验证处理",
+        "WorkBuddy 当前只记录为人工操作清单",
+    )
+    for marker in required_markers:
+        if marker not in combined:
+            print(f"[失败] 官方来源：缺少标记 {marker}")
+            passed = False
+    if passed:
+        print("[通过] 官方来源：README 与集中来源清单已覆盖关键官方依据")
+    return passed
+
+
 def main() -> int:
     passed = True
     for name, script in CHECKS:
         passed = run(name, script) and passed
     passed = validate_installer() and passed
+    passed = validate_official_sources() and passed
     report_detection()
     if not passed:
         print("\n聚合验收失败，请修复上方问题后重新执行。")

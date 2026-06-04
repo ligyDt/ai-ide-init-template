@@ -4,7 +4,7 @@
 
 本模板用于在任意新项目中建立中文研发协作基线，覆盖产品、体验、前端、后端、质量、运维和安全七类职责，以及需求收敛到发布准备的八个流程技能。模板不包含业务代码，也不承诺自动发布或连接生产系统。
 
-本目录内容可单独复制到新项目根目录。复制后，项目将包含 `AGENTS.md` 与 `.cursor/`，由 Cursor 使用项目规则、子代理、skills、MCP 和安全 hooks。
+本目录内容可单独复制到新项目根目录。复制后，项目将包含 `AGENTS.md` 与 `.cursor/`，由 Cursor 使用项目规则、子代理、skills、MCP 和安全 hooks。当前模板中 Rules 与 MCP 有公开官方文档依据；Subagents 与 Skills 依据 Cursor 2.4 官方发布说明和本机可见能力；Hooks 作为模板安全扩展和本机验证项，仍需在 Cursor IDE 内人工确认触发状态。
 
 ## 2. 目录结构
 
@@ -121,8 +121,9 @@ python3 scripts/verify_cursor_setup.py
 
 ## 9. 官方依据
 
-- [Cursor Rules](https://docs.cursor.com/en/context)
+- [Cursor Rules](https://docs.cursor.com/context/rules)
 - [Cursor MCP](https://docs.cursor.com/context/model-context-protocol)
-- [Cursor 2.4：Subagents 与 Skills](https://cursor.com/changelog/2-4)
+- [Cursor 2.4：Subagents 与 Skills](https://www.cursor.com/changelog/2-4)
+- [根级官方来源矩阵](../../docs/reference/official-sources.md)
 
-本模板于 2026 年 5 月按本机可见 Cursor Agent 能力和上述官方资料整理；工具升级后需要复核配置格式。
+本模板于 2026 年 6 月按本机可见 Cursor Agent 能力和上述官方资料整理；工具升级后需要复核配置格式。Cursor Hooks 当前不写成已由公开官网确认的稳定项目机制，只作为模板安全扩展和本机验证能力；复制到目标项目后必须在 IDE 内手动触发一次占位符放行、伪造令牌阻断和高风险命令审批测试。
